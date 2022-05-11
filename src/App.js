@@ -1,3 +1,4 @@
+import "./reset.css"
 import Header from "./components/header";
 import { Register } from "./pages/register";
 

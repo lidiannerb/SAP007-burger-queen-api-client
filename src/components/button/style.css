@@ -1,0 +1,14 @@
+button {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    color: #090909;
+    font-size: 15px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    padding: 0.5em 1.5em;
+    line-height: 1.2;
+    letter-spacing: 1px;
+
+}
