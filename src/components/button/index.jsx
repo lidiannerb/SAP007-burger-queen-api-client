@@ -1,3 +1,4 @@
+import "./style.css"
 export const Button = ({ btnId, btnType, btnClass , btnOnclick , btnText }) => {
     return(
         <button

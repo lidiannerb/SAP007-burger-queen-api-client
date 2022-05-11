@@ -1,7 +1,6 @@
-
+import "./style.css"
 export const Insert  = ({ name, placeholder, className, type, value, onChange }) =>{
     return (
-        <div className="wrap-input">
             <input
             name = {name}
             placeholder = {placeholder}
@@ -10,7 +9,5 @@ export const Insert  = ({ name, placeholder, className, type, value, onChange })
             value={value}
             onChange={onChange}
             />
-    
-        </div>
     );
 };

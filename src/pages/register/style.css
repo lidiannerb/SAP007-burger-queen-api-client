@@ -1,0 +1,46 @@
+.register-form {
+    width: 100%;
+}
+
+.register-form-title {
+    display: block;
+    color: azure;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+/*.register-form-title > img {
+   
+} */
+
+.register-form-input{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+     
+}
+
+.label-text {
+    padding: 5px;
+    color: azure;   
+}
+
+.register-form-input-role {
+    display: flex;
+    padding: 10px 0;
+    color: azure;
+}
+.input-role {
+    margin-right: 10px;
+}
+.text-p {
+    padding-right: 5px;
+}
+
+.form-buttom{
+    width: 100%;
+    padding-top: 1.5rem;   
+}
+
