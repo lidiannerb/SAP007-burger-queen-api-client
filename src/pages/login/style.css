@@ -1,0 +1,33 @@
+.login-form {
+  width: 100%;
+}
+
+.login-form-title {
+  display: block;
+  color: azure;
+  line-height: 1.2;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/*.register-form-title > img {
+ 
+} */
+
+.login-form-input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+   
+}
+
+.label-text {
+  padding: 5px;
+  color: azure;   
+}
+
+.form-buttom{
+  width: 100%;
+  padding-top: 1.5rem;   
+}
