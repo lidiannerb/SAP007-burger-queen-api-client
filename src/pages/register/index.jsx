@@ -22,8 +22,12 @@ const Register = () => {
         codeError(response);
     })
     .then(data => {
-        //const token = data
-        console.log(data.token);
+        const token = data.token;
+        const id = data.id;
+        const role = data.role;
+
+        localStorage.setItem("@token", token);
+        console.log(token, id, role);
     })
     
     // redirecionar para a tela de produtos       
