@@ -23,6 +23,9 @@ const Login = () => {
             <article className="form-buttom">
                 <Button type="submit" btnText="Entrar" />
             </article>
+            <article className="redirect-register">
+            <p className="redirect-register-text">Não tem uma conta?<a className="redirect-register" href="/Register">Cadastre-se</a></p>               
+            </article>
         </form>
     </LayoutForm> 
 };

@@ -56,6 +56,9 @@ const Register = () => {
             <article className="form-buttom">
                 <Button type="submit" btnText="Cadastrar" btnOnclick={handleSubmit} />
             </article>
+            <article className="redirect-login">
+            <p className="redirect-login-text">Já tem uma conta?<a className="redirect-login" href="/">Conecte-se</a></p>               
+            </article>
         </form>
     </LayoutForm> 
 };
