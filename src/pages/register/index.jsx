@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./style.css"
+import "./style.css";
 import { Insert } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
@@ -17,19 +17,19 @@ const Register = () => {
     createUser(name, email, password, role)
     .then((response) => {
         if (response.status === 200){
-            return response.json()
-        };
+            return response.json();
+        }
         codeError(response);
     })
     .then(data => {
         //const token = data
-        console.log(data.token)
+        console.log(data.token);
     })
     
     // redirecionar para a tela de produtos       
-    .catch((error) => console.log(error))
+    .catch((error) => console.log(error));
     // mostrar os erros caso não consiga bater no fecht
-  }
+  };
 
 
     return <LayoutForm >
@@ -60,7 +60,7 @@ const Register = () => {
             <p className="redirect-login-text">Já tem uma conta?<a className="redirect-login" href="/">Conecte-se</a></p>               
             </article>
         </form>
-    </LayoutForm> 
+    </LayoutForm>;
 };
 
 export default Register;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./style.css"
+import "./style.css";
 import { Insert } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
@@ -27,7 +27,7 @@ const Login = () => {
             <p className="redirect-register-text">Não tem uma conta?<a className="redirect-register" href="/Register">Cadastre-se</a></p>               
             </article>
         </form>
-    </LayoutForm> 
+    </LayoutForm>;
 };
 
 export default Login;

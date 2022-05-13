@@ -16,7 +16,7 @@ const RedirectRoutes = () => {
         <Route path="/Register" element={<Register />}/>
       </Routes>
     </Router>
-  )
+  );
 };
 
 export default RedirectRoutes;
