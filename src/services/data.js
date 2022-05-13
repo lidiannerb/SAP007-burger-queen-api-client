@@ -1,7 +1,7 @@
-const URL = "https://lab-api-bq.herokuapp.com/users";
+const URL = "https://lab-api-bq.herokuapp.com";
 
 export const createUser = (name, email, password, role) => {
-return fetch(`${URL}`, {
+return fetch(`${URL}/users`, {
   method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,3 +16,9 @@ return fetch(`${URL}`, {
     })
 });
 };
+
+// export const userLogin = (email, password) => {
+//   return fetch(`${URL}/users`,{
+//     method: ""
+//   })
+// }
