@@ -1,5 +1,5 @@
-import "./reset.css"
-import RedirectRoutes from "./routes"
+import "./reset.css";
+import RedirectRoutes from "./routes";
 
 
 function App() {
@@ -8,6 +8,6 @@ function App() {
       <RedirectRoutes />
     </>
   );
-};                     
+}               
 
 export default App;

@@ -5,6 +5,7 @@ import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { createUser } from "../../services/data";
 import { codeError } from "../../services/errors/error";
+import { saveToken } from "../../services/token";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -22,8 +23,7 @@ const Register = () => {
         codeError(response);
     })
     .then(data => {
-        //const token = data
-        console.log(data.token);
+      saveToken(data.token);
     })
     
     // redirecionar para a tela de produtos       

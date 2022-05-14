@@ -1,4 +1,5 @@
-import "./style.css"
+import "./style.css";
+
 export const Insert  = ({ name, placeholder, className, type, value, onChange }) =>{
     return (
             <input

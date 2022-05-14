@@ -17,8 +17,16 @@ return fetch(`${URL}/users`, {
 });
 };
 
-// export const userLogin = (email, password) => {
-//   return fetch(`${URL}/users`,{
-//     method: ""
-//   })
-// }
+export const userLogin = (email, password) => {
+  return fetch(`${URL}/auth`,{
+    method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      })
+  });
+};

@@ -14,5 +14,5 @@ export function codeError (response){
             alert("usuario não encontrado");
             break;
         default:
-    };
-};
+    }
+}
