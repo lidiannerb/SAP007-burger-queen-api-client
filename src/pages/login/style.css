@@ -31,3 +31,15 @@
   width: 100%;
   padding-top: 1.5rem;   
 }
+.redirect-register {
+  text-align: center;
+  padding-top: 1.5em;
+}
+
+.redirect-register-text  {
+  color: #fefefe;
+}
+.link{
+  color:#fefefe;
+  padding-left: 0.3em;
+}
