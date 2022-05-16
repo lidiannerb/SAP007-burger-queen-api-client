@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate , Link} from "react-router-dom";
 import "./style.css";
 import { Insert } from "../../components/inputs";
 import { Button } from "../../components/button";
@@ -7,9 +8,11 @@ import { userLogin } from "../../services/data";
 import { codeError } from "../../services/errors/error";
 import { saveToken } from "../../services/token";
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");  
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,11 +25,13 @@ const Login = () => {
     })
     .then(data => {
       saveToken(data.token);
+      navigate("/Menu");
+      console.log("entrou");
     })
     
     // redirecionar para a tela de produtos       
     .catch((error) => console.log(error));
-    // mostrar os erros caso não consiga bater no fecht
+    // mostrar os erros caso não consiga bater no fetch
   };
 
 
@@ -46,7 +51,8 @@ const Login = () => {
                 <Button type="submit" btnText="Entrar" btnOnclick={handleSubmit}/>
             </article>
             <article className="redirect-register">
-            <p className="redirect-register-text">Não tem uma conta?<a className="redirect-register" href="/Register">Cadastre-se</a></p>               
+                <p className="redirect-register-text">Não tem uma conta?
+                <Link to="/Register" className="link">Cadastre-se</Link></p>               
             </article>
         </form>
     </LayoutForm>;
