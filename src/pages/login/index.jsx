@@ -5,8 +5,8 @@ import { Insert } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { userLogin } from "../../services/data";
-import { codeError } from "../../services/errors/error";
-import { saveToken } from "../../services/token";
+import { codeError } from "../../services/errors";
+import { saveToken, getRole } from "../../services/token";
 
 
 const Login = () => {
@@ -25,8 +25,12 @@ const Login = () => {
     })
     .then(data => {
       saveToken(data.token);
-      navigate("/Menu");
-      console.log("entrou");
+      if (getRole === "atendent"){
+        navigate("/Menu");        
+      } else{
+        navigate("/Register"); 
+      }
+      
     })
     
     // redirecionar para a tela de produtos       
