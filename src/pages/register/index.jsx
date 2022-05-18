@@ -4,8 +4,8 @@ import { Insert } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { createUser } from "../../services/data";
-import { codeError } from "../../services/errors/error";
-import { saveToken } from "../../services/token";
+import { codeError } from "../../services/errors";
+import { saveToken, saveRole } from "../../services/token";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -15,7 +15,7 @@ const Register = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser(name, email, password, role)
+    createUser(name, email, password, role)    
     .then((response) => {
         if (response.status === 200){
             return response.json();
@@ -24,8 +24,10 @@ const Register = () => {
     })
     .then(data => {
       saveToken(data.token);
+      saveRole(data.role);
     })
     
+
     // redirecionar para a tela de produtos       
     .catch((error) => console.log(error));
     // mostrar os erros caso não consiga bater no fecht
