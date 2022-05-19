@@ -10,26 +10,22 @@
   font-size: 1.3rem;
 }
 
-/*.register-form-title > img {
- 
-} */
-
 .login-form-input{
   width: 100%;
   display: flex;
   flex-direction: column;
   align-content: center;
-   
+
 }
 
 .label-text {
   padding: 5px;
-  color: azure;   
+  color: azure;
 }
 
 .form-buttom{
   width: 100%;
-  padding-top: 1.5rem;   
+  padding-top: 1.5rem;
 }
 .redirect-register {
   text-align: center;

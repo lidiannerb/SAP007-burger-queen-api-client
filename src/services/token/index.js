@@ -10,10 +10,10 @@ export const removeToken = ((token) =>
   localStorage.removeItem("token", token)
 );
 
-export const saveRole = ((role) => 
+export const saveRole = ((role) =>
   localStorage.setItem("role", role)
 );
 
-export const getRole = (() => 
+export const getRole = (() =>
   localStorage.getItem("role")
 );

@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useNavigate , Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./style.css";
 import { Insert } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { userLogin } from "../../services/data";
 import { codeError } from "../../services/errors";
-import { saveToken, getRole } from "../../services/token";
-
+import { saveToken } from "../../services/token";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,49 +16,62 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     userLogin(email, password)
-    .then((response) => {
-        if (response.status === 200){
-            return response.json();
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
         }
         codeError(response);
-    })
-    .then(data => {
-      saveToken(data.token);
-      if (getRole === "atendent"){
-        navigate("/Menu");        
-      } else{
-        navigate("/Register"); 
-      }
-      
-    })
-    
-    // redirecionar para a tela de produtos       
-    .catch((error) => console.log(error));
-    // mostrar os erros caso não consiga bater no fetch
+      })
+      .then((data) => {
+        saveToken(data.token);
+        if (data.role == "atendent") {
+          navigate("/Menu");
+        } else {
+          navigate("/Register");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
-
-    return <LayoutForm >
-        <form  className="login-form">
-            <p className="login-form-title">Entrar</p>
-            <span className="login-form-title">
-                <img src="" alt="Logo do restaurante" />
-            </span>
-            <article className="login-form-input">
-                <label className="label-text" >Email</label>
-                <Insert  type= "email" placeholder="user@user.com" value={email}  onChange={(e) => setEmail(e.target.value)} />
-                <label className="label-text">Senha</label>
-                <Insert  type= "password" placeholder="xxxxxx" value={password}  onChange={(e) => setPassword(e.target.value)}/>
-            </article>
-            <article className="form-buttom">
-                <Button type="submit" btnText="Entrar" btnOnclick={handleSubmit}/>
-            </article>
-            <article className="redirect-register">
-                <p className="redirect-register-text">Não tem uma conta?
-                <Link to="/Register" className="link">Cadastre-se</Link></p>               
-            </article>
-        </form>
-    </LayoutForm>;
+  return (
+    <LayoutForm>
+      <form className="login-form">
+        <p className="login-form-title">Entrar</p>
+        <span className="login-form-title">
+          <img src="" alt="Logo do restaurante" />
+        </span>
+        <article className="login-form-input">
+          <label className="label-text">Email</label>
+          <Insert
+            type="email"
+            placeholder="user@user.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label className="label-text">Senha</label>
+          <Insert
+            type="password"
+            placeholder="xxxxxx"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </article>
+        <article className="form-buttom">
+          <Button type="submit" btnText="Entrar" btnOnclick={handleSubmit} />
+        </article>
+        <article className="redirect-register">
+          <p className="redirect-register-text">
+            Não tem uma conta?
+            <Link to="/Register" className="link">
+              Cadastre-se
+            </Link>
+          </p>
+        </article>
+      </form>
+    </LayoutForm>
+  );
 };
 
 export default Login;

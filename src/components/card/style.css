@@ -1,0 +1,15 @@
+
+.img-card {
+  width: 100%
+}
+
+.img {
+  width: 80px;
+  height: 80px;
+}
+.text-price {
+  font-size: 0.9rem;
+  line-height: 1.2;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+}
