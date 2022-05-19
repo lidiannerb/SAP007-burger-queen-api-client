@@ -1,6 +1,5 @@
 .container {
     width: 100%;
-    margin: 0 auto;
 }
 
 .container-form {
@@ -19,11 +18,11 @@
     width: 400px;
     background: #333;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-x: hidden;
     padding: 77px 55px 50px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    
+
 }

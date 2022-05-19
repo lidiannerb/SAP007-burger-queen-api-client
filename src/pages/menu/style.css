@@ -1,3 +1,27 @@
-img {
-    width: 40px;
+
+
+.menu-text {
+  font-size: 1.5rem;
+  line-height: 1.2;
 }
+
+.container-button{
+  display: flex;
+  justify-content: space-between;
+}
+.btn-menu {
+  color: #090909;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+}
+
+.card-products {
+  display: grid;
+  grid-template-columns: repeat(4, 0.2fr);
+  justify-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 2rem;
+}
+
+

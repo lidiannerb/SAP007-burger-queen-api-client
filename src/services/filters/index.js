@@ -1,5 +1,4 @@
-export const filters = (data, type) => data.filter(item => {
-  return item[type];
-});
-
+ export const dataFilter = (data, type) => {
+  return data.filter((element) => element.type === type);
+};
 
