@@ -1,23 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
-import {Header} from "../../components/header";
+import SelectTable from "../../components/SelectTable";
 import { Button } from "../../components/button";
 import { Card } from "../../components/card";
+import ButtonInsertProducts from "../../components/buttonInsertProducts";
 import { getProduct } from "../../services/data";
 import { dataFilter } from "../../services/filters";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
+  const [clientTable, setClientTable] = useState({ clientTable: "" });
 
-  const handleMenu = (e) => {
+  const handleFilter = (option) => {
     getProduct()
       .then((response) => response.json())
-      .then((data) => setProducts(dataFilter(data, e.target.value)));
+      .then((data) => setProducts(dataFilter(data, option)));
   };
 
-  return (
+  const handleMenu = (e) => {
+    handleFilter(e.target.value);
+  };
+
+  useEffect(() => {
+    handleFilter("all-day");
+  }, []);
+
+  const handleInputSelectOnChange = (e) => {
+    setClientTable({ clientTable: e.target.value });
+  };
+
+  return (   
     <>
-      <Header className="amarelo" title="aparece" />
+      <SelectTable
+        value={clientTable.clientTable}
+        onChange={(e) => handleInputSelectOnChange(e)}
+      />
 
       <section className="container-menu">
         <p className="menu-text">Cardapio</p>
@@ -37,14 +54,19 @@ export const Menu = () => {
         </article>
         <ul className="card-products">
           {products.map((product, index) => {
-              return <Card key={index}
-              image = {product.image}
-              price = {product.price}
-              />;
-          })}
+              return (     
+                <div key={index}>           
+                  <Card 
+                  name = {product.name}
+                  image = {product.image}
+                  price = {product.price}                
+                  />
+                  <ButtonInsertProducts />
+                </div>
+              );
+            })}
         </ul>
       </section>
-
     </>
   );
 };
