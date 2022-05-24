@@ -7,6 +7,7 @@ import { LayoutForm } from "../../components/layout";
 import { userLogin } from "../../services/data";
 import { codeError } from "../../services/errors";
 import { saveToken } from "../../services/token";
+import { Logo } from "../../components/logo";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ const Login = () => {
       <form className="login-form">
         <p className="login-form-title">Entrar</p>
         <span className="login-form-title">
-          <img src="" alt="Logo do restaurante" />
+          <Logo/>
         </span>
         <article className="login-form-input">
           <label className="label-text">Email</label>
@@ -71,6 +72,7 @@ const Login = () => {
         </article>
       </form>
     </LayoutForm>
+
   );
 };
 

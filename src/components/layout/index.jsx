@@ -1,5 +1,5 @@
 import "./style.css";
-
+import { Footer } from "../footer";
 export const LayoutForm = (props) => {
   return(
     <section className="container">
@@ -9,6 +9,7 @@ export const LayoutForm = (props) => {
 
           </div>
         </div>
+        <Footer/>
     </section>
   );
 };
