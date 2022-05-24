@@ -1,15 +1,17 @@
+/* eslint-disable no-undef */
 import { useEffect, useState } from "react";
 import "./style.css";
-import SelectTable from "../../components/SelectTable";
+// import SelectTable from "../../components/SelectTable";
 import { Button } from "../../components/button";
 import { Card } from "../../components/card";
-import ButtonInsertProducts from "../../components/buttonInsertProducts";
 import { getProduct } from "../../services/data";
 import { dataFilter } from "../../services/filters";
+import { Command } from "../../components/comand";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
-  const [clientTable, setClientTable] = useState({ clientTable: "" });
+  // const [clientTable, setClientTable] = useState({ clientTable: "" });
+  const [command, setCommand] = useState([]);
 
   const handleFilter = (option) => {
     getProduct()
@@ -25,17 +27,25 @@ export const Menu = () => {
     handleFilter("all-day");
   }, []);
 
-  const handleInputSelectOnChange = (e) => {
-    setClientTable({ clientTable: e.target.value });
+  const handleAddProductOnCommand = (product) => {
+    console.log(product);
+    const newProduct = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+    };
+    command.push(newProduct);
+    setCommand([...command]);
   };
+
+  console.log(handleAddProductOnCommand());
+
+  // const handleInputSelectOnChange = (e) => {
+  //   setClientTable({ clientTable: e.target.value });
+  // };
 
   return (   
     <>
-      <SelectTable
-        value={clientTable.clientTable}
-        onChange={(e) => handleInputSelectOnChange(e)}
-      />
-
       <section className="container-menu">
         <p className="menu-text">Cardapio</p>
         <article className="container-button">
@@ -53,18 +63,35 @@ export const Menu = () => {
           />
         </article>
         <ul className="card-products">
-          {products.map((product, index) => {
+          {products.map((product) => {
               return (     
-                <div key={index}>           
+                <div key={product.id}>           
                   <Card 
                   name = {product.name}
                   image = {product.image}
                   price = {product.price}                
+                  />                
+                  <Button 
+                  btnClass="btn-adc-product"
+                  btnOnclick={() => handleAddProductOnCommand(product)} 
+                  btnText="Adicionar"
                   />
-                  <ButtonInsertProducts />
                 </div>
               );
             })}
+        </ul>
+        <ul>
+          {command.map((product) => {
+            return (
+              <li key={product.id}>
+                <Command 
+                  nameProduct={product.name}
+                  priceProduct={product.price}
+                  // quantityProduct={product.quantity}
+                />
+              </li>
+            );
+          })}          
         </ul>
       </section>
     </>
