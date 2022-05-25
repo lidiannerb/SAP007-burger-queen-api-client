@@ -39,7 +39,7 @@ const Login = () => {
       <form className="login-form">
         <p className="login-form-title">Entrar</p>
         <span className="login-form-title">
-          <Logo/>
+          <Logo />
         </span>
         <article className="login-form-input">
           <label className="label-text">Email</label>
@@ -60,7 +60,9 @@ const Login = () => {
           />
         </article>
         <article className="form-buttom">
-          <Button type="submit" btnText="Entrar" btnOnclick={handleSubmit} />
+          <Button type="submit" onClick={handleSubmit}>
+            Entrar
+          </Button>
         </article>
         <article className="redirect-register">
           <p className="redirect-register-text">
@@ -72,7 +74,6 @@ const Login = () => {
         </article>
       </form>
     </LayoutForm>
-
   );
 };
 
