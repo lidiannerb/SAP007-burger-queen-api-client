@@ -11,7 +11,7 @@ import { Command } from "../../components/comand";
 export const Menu = () => {
   const [products, setProducts] = useState([]);
   // const [clientTable, setClientTable] = useState({ clientTable: "" });
-  const [command, setCommand] = useState([]);
+  const [order, setOrder] = useState([]);
 
   const handleFilter = (option) => {
     getProduct()
@@ -28,70 +28,96 @@ export const Menu = () => {
   }, []);
 
   const handleAddProductOnCommand = (product) => {
-    console.log(product);
-    const newProduct = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-    };
-    command.push(newProduct);
-    setCommand([...command]);
+    let newOrder = [...order];
+
+    const productOnCommand = newOrder.find((item)=> item.id === product.id);
+
+    if(productOnCommand){
+      productOnCommand.quantity += 1;
+    }else{
+      const newProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+      };
+      newOrder.push(newProduct);
+    }
+    setOrder(newOrder);
   };
 
-  console.log(handleAddProductOnCommand());
+  const handleRemoveProductOnCommand = (product) => {
+    let newOrder = [...order];
+
+    const productOnCommand = newOrder.find((item)=> item.id === product.id);
+
+    if(productOnCommand.quantity > 1){
+      productOnCommand.quantity -= 1;
+    }
+    else{
+      newOrder = newOrder.filter((item)=> item.id !== product.id);
+    }
+    setOrder(newOrder);
+  };
 
   // const handleInputSelectOnChange = (e) => {
   //   setClientTable({ clientTable: e.target.value });
   // };
 
-  return (   
+  return (
     <>
       <section className="container-menu">
         <p className="menu-text">Cardapio</p>
         <article className="container-button">
           <Button
-            btnOnclick={handleMenu}
-            btnValue="breakfast"
-            btnText="Café da manhã"
-            btnClass="btn-menu"
-          />
+            onClick={handleMenu}
+            value="breakfast"
+            className="btn-menu"
+          >Café da manhã</Button>
           <Button
-            btnOnclick={handleMenu}
-            btnValue="all-day"
-            btnText="Almoço e jantar"
-            btnClass="btn-menu"
-          />
+            onClick={handleMenu}
+            value="all-day"
+            className="btn-menu"
+          >
+            Almoço
+          </Button>
         </article>
         <ul className="card-products">
           {products.map((product) => {
-              return (     
-                <div key={product.id}>           
-                  <Card 
+              return (
+                <div key={`products-${product.id}`}>
+                  <Card
                   name = {product.name}
                   image = {product.image}
-                  price = {product.price}                
-                  />                
-                  <Button 
-                  btnClass="btn-adc-product"
-                  btnOnclick={() => handleAddProductOnCommand(product)} 
-                  btnText="Adicionar"
+                  price = {product.price}
+                  flavor = {product.flavor}
+                  complement = {product.complement}
                   />
+                  <Button
+                  className="btn-adc-product"
+                  onClick={() => handleAddProductOnCommand(product)}
+                  >Adicionar</Button>
                 </div>
               );
             })}
         </ul>
         <ul>
-          {command.map((product) => {
+          {order.map((product) => {
             return (
-              <li key={product.id}>
-                <Command 
-                  nameProduct={product.name}
-                  priceProduct={product.price}
-                  // quantityProduct={product.quantity}
+              <li key={`products-order-${product.id}`}>
+                <Command
+                  name= {product.name}
+                  price= {product.price}
+                  quantity= {product.quantity}
                 />
+                <Button
+                  className="btn-adc-product"
+                  onClick={() => handleRemoveProductOnCommand(product)}>
+                    Remover
+                </Button>
               </li>
             );
-          })}          
+          })}
         </ul>
       </section>
     </>
