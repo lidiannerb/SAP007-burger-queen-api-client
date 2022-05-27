@@ -9,6 +9,9 @@ export const Command = ({id, name, price, quantity }) => {
       <p className="text-price">Preço: R${price}</p>
       <p className="text-price">{quantity}</p>
     </li>
+    <li>
+
+    </li>
   </ul>
   );
 };
