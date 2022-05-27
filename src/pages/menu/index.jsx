@@ -12,6 +12,7 @@ export const Menu = () => {
   const [products, setProducts] = useState([]);
   // const [clientTable, setClientTable] = useState({ clientTable: "" });
   const [order, setOrder] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const handleFilter = (option) => {
     getProduct()
@@ -26,6 +27,15 @@ export const Menu = () => {
   useEffect(() => {
     handleFilter("all-day");
   }, []);
+
+
+   useEffect(()=>{
+     const sum = order.reduce((previousValue, product)=>{
+       return previousValue + product.quantity * product.price;
+     },0);
+     setTotal(sum);
+   },[order]);
+
 
   const handleAddProductOnCommand = (product) => {
     let newOrder = [...order];
@@ -85,7 +95,7 @@ export const Menu = () => {
         <ul className="card-products">
           {products.map((product) => {
               return (
-                <div key={`products-${product.id}`}>
+                <li key={`products-${product.id}`}>
                   <Card
                   name = {product.name}
                   image = {product.image}
@@ -96,8 +106,9 @@ export const Menu = () => {
                   <Button
                   className="btn-adc-product"
                   onClick={() => handleAddProductOnCommand(product)}
-                  >Adicionar</Button>
-                </div>
+                  >Adicionar
+                  </Button>
+                </li>
               );
             })}
         </ul>
@@ -107,7 +118,7 @@ export const Menu = () => {
               <li key={`products-order-${product.id}`}>
                 <Command
                   name= {product.name}
-                  price= {product.price}
+                  price= {product.price * product.quantity}
                   quantity= {product.quantity}
                 />
                 <Button
@@ -119,6 +130,7 @@ export const Menu = () => {
             );
           })}
         </ul>
+        <p>Valor total:R${total}</p>
       </section>
     </>
   );
