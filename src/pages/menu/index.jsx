@@ -25,7 +25,7 @@ export const Menu = () => {
   };
 
   useEffect(() => {
-    handleFilter("all-day");
+    handleFilter("breakfast");
   }, []);
 
 
@@ -83,13 +83,28 @@ export const Menu = () => {
             onClick={handleMenu}
             value="breakfast"
             className="btn-menu"
-          >Café da manhã</Button>
+          >Café da manhã
+          </Button>
           <Button
             onClick={handleMenu}
-            value="all-day"
+            value="side"
             className="btn-menu"
           >
-            Almoço
+            Entrada
+          </Button>
+          <Button
+            onClick={handleMenu}
+            value="hamburguer"
+            className="btn-menu"
+          >
+            Hamburgueres
+          </Button>
+          <Button
+            onClick={handleMenu}
+            value="drinks"
+            className="btn-menu"
+          >
+            Bebidas
           </Button>
         </article>
         <ul className="card-products">
