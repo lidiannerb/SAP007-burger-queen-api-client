@@ -3,7 +3,7 @@
 }
 
 .container-form {
-    min-height: 89vh;
+    min-height: 90vh;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -16,7 +16,7 @@
 
 .wrap-form {
     width: 350px;
-    height: 450px;
+    height: 400px;
     background: #DAA927;
     border-radius: 30px;
     padding: 45px 50px;
@@ -30,6 +30,6 @@
 
 .image-heisenburger {
     width: 20vw;
-    height: 7vw; 
+    height: 7vw;
 }
 

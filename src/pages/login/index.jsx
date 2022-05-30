@@ -59,7 +59,7 @@ const Login = () => {
             required
           />
         </article>
-        <article className="form-buttom">
+        <article className="form-buttom-login">
           <Button type="submit" onClick={handleSubmit}>
             Entrar
           </Button>
