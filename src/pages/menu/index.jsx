@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useEffect, useState } from "react";
 import "./style.css";
 // import SelectTable from "../../components/SelectTable";
@@ -7,6 +6,7 @@ import { Card } from "../../components/card";
 import { getProduct } from "../../services/data";
 import { dataFilter } from "../../services/filters";
 import { Command } from "../../components/comand";
+import { Header } from "../../components/header";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
@@ -28,23 +28,21 @@ export const Menu = () => {
     handleFilter("breakfast");
   }, []);
 
-
-   useEffect(()=>{
-     const sum = order.reduce((previousValue, product)=>{
-       return previousValue + product.quantity * product.price;
-     },0);
-     setTotal(sum);
-   },[order]);
-
+  useEffect(() => {
+    const sum = order.reduce((previousValue, product) => {
+      return previousValue + product.quantity * product.price;
+    }, 0);
+    setTotal(sum);
+  }, [order]);
 
   const handleAddProductOnCommand = (product) => {
     let newOrder = [...order];
 
-    const productOnCommand = newOrder.find((item)=> item.id === product.id);
+    const productOnCommand = newOrder.find((item) => item.id === product.id);
 
-    if(productOnCommand){
+    if (productOnCommand) {
       productOnCommand.quantity += 1;
-    }else{
+    } else {
       const newProduct = {
         id: product.id,
         name: product.name,
@@ -59,13 +57,12 @@ export const Menu = () => {
   const handleRemoveProductOnCommand = (product) => {
     let newOrder = [...order];
 
-    const productOnCommand = newOrder.find((item)=> item.id === product.id);
+    const productOnCommand = newOrder.find((item) => item.id === product.id);
 
-    if(productOnCommand.quantity > 1){
+    if (productOnCommand.quantity > 1) {
       productOnCommand.quantity -= 1;
-    }
-    else{
-      newOrder = newOrder.filter((item)=> item.id !== product.id);
+    } else {
+      newOrder = newOrder.filter((item) => item.id !== product.id);
     }
     setOrder(newOrder);
   };
@@ -77,75 +74,63 @@ export const Menu = () => {
   return (
     <>
       <section className="container-menu">
+        <Header></Header>
         <p className="menu-text">Cardapio</p>
         <article className="container-button">
-          <Button
-            onClick={handleMenu}
-            value="breakfast"
-            className="btn-menu"
-          >Café da manhã
+          <Button onClick={handleMenu} value="breakfast" className="btn-menu">
+            Café da manhã
           </Button>
-          <Button
-            onClick={handleMenu}
-            value="side"
-            className="btn-menu"
-          >
+          <Button onClick={handleMenu} value="side" className="btn-menu">
             Entrada
           </Button>
-          <Button
-            onClick={handleMenu}
-            value="hamburguer"
-            className="btn-menu"
-          >
+          <Button onClick={handleMenu} value="hamburguer" className="btn-menu">
             Hamburgueres
           </Button>
-          <Button
-            onClick={handleMenu}
-            value="drinks"
-            className="btn-menu"
-          >
+          <Button onClick={handleMenu} value="drinks" className="btn-menu">
             Bebidas
           </Button>
         </article>
         <ul className="card-products">
           {products.map((product) => {
-              return (
-                <li key={`products-${product.id}`}>
-                  <Card
-                  name = {product.name}
-                  image = {product.image}
-                  price = {product.price}
-                  flavor = {product.flavor}
-                  complement = {product.complement}
-                  />
-                  <Button
+            return (
+              <li key={`products-${product.id}`}>
+                <Card
+                  name={product.name}
+                  image={product.image}
+                  price={product.price}
+                  flavor={product.flavor}
+                  complement={product.complement}
+                />
+                <Button
                   className="btn-adc-product"
                   onClick={() => handleAddProductOnCommand(product)}
-                  >Adicionar
-                  </Button>
-                </li>
-              );
-            })}
+                >
+                  Adicionar
+                </Button>
+              </li>
+            );
+          })}
         </ul>
         <ul>
           {order.map((product) => {
             return (
               <li key={`products-order-${product.id}`}>
                 <Command
-                  name= {product.name}
-                  price= {product.price * product.quantity}
-                  quantity= {product.quantity}
+                  name={product.name}
+                  price={product.price * product.quantity}
+                  quantity={product.quantity}
                 />
                 <Button
                   className="btn-adc-product"
-                  onClick={() => handleRemoveProductOnCommand(product)}>
-                    Remover
+                  onClick={() => handleRemoveProductOnCommand(product)}
+                >
+                  Remover
                 </Button>
               </li>
             );
           })}
         </ul>
-        <p>Valor total:R${total}</p>
+        {total != 0 ? <p>Valor total:R${total}</p> : ""}
       </section>
     </>
   );
