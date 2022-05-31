@@ -107,11 +107,11 @@ export const Menu = () => {
     <>
       <section className="container-menu">
         <Header
-          onClick={handleLogout}        
+          onClick={handleLogout}   
+          className="header-container"     
         >                 
         </Header>
-        <p className="menu-text">Cardapio</p>
-        <article className="container-button">
+        <aside className="container-button">
           <Button onClick={handleMenu} value="breakfast" className="btn-menu">
             Café da manhã
           </Button>
@@ -124,7 +124,7 @@ export const Menu = () => {
           <Button onClick={handleMenu} value="drinks" className="btn-menu">
             Bebidas
           </Button>
-        </article>
+        </aside>
         <ul className="card-products">
           {products.map((product) => {
             return (
