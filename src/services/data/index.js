@@ -41,3 +41,42 @@ export const getProduct = () => {
       }
   });
 };
+
+export const sendOrder = (client, table, products) => {
+  return fetch(`${URL}/orders`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": getToken("token")
+    },
+    body: JSON.stringify({
+      client: client,
+      table: table,
+      products: products,  
+    })
+  });
+};
+
+export const getOrders = () => {
+  return fetch(`${URL}/orders` , {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": getToken()
+    },
+  }).then((res) => res.json());
+};
+
+// export const updateOrderStatus = (id, status) => {
+//   id = id.toString();
+//   return fetch(`${URL}/orders` ${id}, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Authorization": getToken(),
+//     },
+//     body: JSON.stringify({
+//       status
+//     })
+//   }).then((res) => res.json());
+// };
