@@ -82,7 +82,12 @@ const Register = () => {
           />
         </article>
         <article className="form-buttom">
-          <Button type="submit" onClick={handleSubmit}>Cadastrar</Button>
+          <Button 
+            className="btn-register"
+            type="submit" 
+            onClick={handleSubmit}>
+              Cadastrar
+            </Button>
         </article>
       </form>
     </LayoutForm>

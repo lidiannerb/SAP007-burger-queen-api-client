@@ -1,5 +1,21 @@
+.header-container {
+  background: #222222;
+}
+
+.header-container-ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image-heisenburger-container {
+  display: flex;   
+}
+
+/* .btn-logout-container {
+  align-self: flex-end;
+} */
+
 .icon{
   font-size: 40px;
-  color: #000000;
-
+  color: #CCCCCC;    
 }

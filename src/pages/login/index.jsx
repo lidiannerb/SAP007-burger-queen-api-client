@@ -60,7 +60,10 @@ const Login = () => {
           />
         </article>
         <article className="form-buttom-login">
-          <Button type="submit" onClick={handleSubmit}>
+          <Button 
+            className="btn-register"
+            type="submit"
+            onClick={handleSubmit}>
             Entrar
           </Button>
         </article>

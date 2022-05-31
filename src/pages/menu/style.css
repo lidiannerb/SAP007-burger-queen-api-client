@@ -6,6 +6,7 @@
 .container-button{
   display: flex;
   justify-content: space-between;
+  background: #222222;
 }
 
 .card-products {
