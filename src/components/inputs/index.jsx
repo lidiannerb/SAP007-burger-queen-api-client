@@ -1,6 +1,6 @@
 import "./style.css";
 
-export const Insert  = ({ name, placeholder, className, type, value, onChange }) =>{
+export const Input  = ({ name, placeholder, className, type, value, onChange }) =>{
     return (
             <input
             name = {name}

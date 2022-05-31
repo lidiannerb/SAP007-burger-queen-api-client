@@ -1,18 +1,23 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import "./style.css";
-// import SelectTable from "../../components/SelectTable";
+import {SelectTable} from "../../components/SelectTable";
 import { Button } from "../../components/button";
 import { Card } from "../../components/card";
 import { getProduct } from "../../services/data";
 import { dataFilter } from "../../services/filters";
 import { Command } from "../../components/comand";
 import { Header } from "../../components/header";
+import { Input } from "../../components/inputs";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
-  // const [clientTable, setClientTable] = useState({ clientTable: "" });
+  const [table, setTable] = useState("");
+  const [client, setClient] = useState(""); 
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
+
+
 
   const handleFilter = (option) => {
     getProduct()
@@ -67,10 +72,11 @@ export const Menu = () => {
     setOrder(newOrder);
   };
 
-  // const handleInputSelectOnChange = (e) => {
-  //   setClientTable({ clientTable: e.target.value });
-  // };
-
+  const handleSelectTable = (e) => {
+    setTable({ table: e.target.value });
+    // console.log(setClientTable);
+  };
+    
   return (
     <>
       <section className="container-menu">
@@ -112,6 +118,20 @@ export const Menu = () => {
           })}
         </ul>
         <ul>
+          <li>
+            <label>Cliente</label>
+            <Input
+              type="text"
+              value={client}
+              onChange={(e) => setClient(e.target.value)}
+            />
+          </li>
+          <li>
+            <SelectTable
+              className="btn-select-table"
+              onChange={handleSelectTable}
+            />
+          </li>
           {order.map((product) => {
             return (
               <li key={`products-order-${product.id}`}>
