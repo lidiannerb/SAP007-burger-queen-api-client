@@ -9,6 +9,7 @@ import { dataFilter } from "../../services/filters";
 import { Command } from "../../components/comand";
 import { Header } from "../../components/header";
 import { Input } from "../../components/inputs";
+import { sendOrder} from "../../services/data";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
@@ -16,8 +17,7 @@ export const Menu = () => {
   const [client, setClient] = useState(""); 
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
-
-
+  const [dataOrder, setDataOrder] = useState([]);
 
   const handleFilter = (option) => {
     getProduct()
@@ -35,7 +35,7 @@ export const Menu = () => {
 
   useEffect(() => {
     const sum = order.reduce((previousValue, product) => {
-      return previousValue + product.quantity * product.price;
+      return previousValue + product.qtd * product.price;
     }, 0);
     setTotal(sum);
   }, [order]);
@@ -46,13 +46,13 @@ export const Menu = () => {
     const productOnCommand = newOrder.find((item) => item.id === product.id);
 
     if (productOnCommand) {
-      productOnCommand.quantity += 1;
+      productOnCommand.qtd += 1;
     } else {
       const newProduct = {
         id: product.id,
         name: product.name,
         price: product.price,
-        quantity: 1,
+        qtd: 1,
       };
       newOrder.push(newProduct);
     }
@@ -64,8 +64,8 @@ export const Menu = () => {
 
     const productOnCommand = newOrder.find((item) => item.id === product.id);
 
-    if (productOnCommand.quantity > 1) {
-      productOnCommand.quantity -= 1;
+    if (productOnCommand.qtd > 1) {
+      productOnCommand.qtd -= 1;
     } else {
       newOrder = newOrder.filter((item) => item.id !== product.id);
     }
@@ -73,10 +73,26 @@ export const Menu = () => {
   };
 
   const handleSelectTable = (e) => {
-    setTable({ table: e.target.value });
-    // console.log(setClientTable);
+    setTable(e.target.value);    
   };
-    
+  
+  useEffect(() => {
+    console.log(client);
+  }, [client]);
+
+  useEffect(() => {
+    console.log(table);
+  }, [table]);
+
+  const handleSendOrder = (e) => {
+    sendOrder(client, table, order)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataOrder(data);      
+      });  
+      console.log([dataOrder]);
+  };   
+
   return (
     <>
       <section className="container-menu">
@@ -137,20 +153,21 @@ export const Menu = () => {
               <li key={`products-order-${product.id}`}>
                 <Command
                   name={product.name}
-                  price={product.price * product.quantity}
-                  quantity={product.quantity}
-                />
-                <Button
-                  className="btn-adc-product"
+                  price={product.price * product.qtd}
+                  qtd={product.qtd}
                   onClick={() => handleRemoveProductOnCommand(product)}
-                >
-                  Remover
-                </Button>
+                />
               </li>
             );
           })}
         </ul>
         {total != 0 ? <p>Valor total:R${total}</p> : ""}
+        <Button
+          type="button"
+          onClick={handleSendOrder}
+        >
+          Enviar Pedido
+        </Button>
       </section>
     </>
   );
