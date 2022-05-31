@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./style.css";
-import { Insert } from "../../components/inputs";
+import { Input } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { Logo } from "../../components/logo";
 import { LayoutForm } from "../../components/layout";
@@ -41,21 +41,21 @@ const Register = () => {
         </article>
         <article className="register-form-input">
           <label className="label-text">Nome</label>
-          <Insert
+          <Input
             placeholder="insira seu nome"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <label className="label-text">Email</label>
-          <Insert
+          <Input
             type="email"
             placeholder="user@user.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <label className="label-text">Senha</label>
-          <Insert
+          <Input
             type="password"
             placeholder="xxxxxx"
             value={password}
@@ -65,7 +65,7 @@ const Register = () => {
         <article className="register-form-input-role">
           <p className="text-p"> Escolha seu cargo:</p>
           <label>Atendente</label>
-          <Insert
+          <Input
             className="input-role"
             type="radio"
             value="atendent"
@@ -73,7 +73,7 @@ const Register = () => {
             onChange={(e) => setRole(e.target.value)}
           />
           <label>Cozinha</label>
-          <Insert
+          <Input
             className="input-role"
             type="radio"
             value="kitchen"

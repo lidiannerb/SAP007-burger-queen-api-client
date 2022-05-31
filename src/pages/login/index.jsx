@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./style.css";
-import { Insert } from "../../components/inputs";
+import { Input } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { userLogin } from "../../services/data";
@@ -43,7 +43,7 @@ const Login = () => {
         </span>
         <article className="login-form-input">
           <label className="label-text">Email</label>
-          <Insert
+          <Input
             type="email"
             placeholder="user@user.com"
             value={email}
@@ -51,7 +51,7 @@ const Login = () => {
             required
           />
           <label className="label-text">Senha</label>
-          <Insert
+          <Input
             type="password"
             placeholder="xxxxxx"
             value={password}
