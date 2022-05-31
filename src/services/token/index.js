@@ -6,8 +6,8 @@ export const getToken = (() =>
   localStorage.getItem("token")
 );
 
-export const removeToken = ((token) =>
-  localStorage.removeItem("token", token)
+export const removeToken = (() =>
+  localStorage.removeItem("token")
 );
 
 export const saveRole = ((role) =>

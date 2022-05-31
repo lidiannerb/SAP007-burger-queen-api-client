@@ -10,6 +10,8 @@ import { Command } from "../../components/comand";
 import { Header } from "../../components/header";
 import { Input } from "../../components/inputs";
 import { sendOrder} from "../../services/data";
+import { removeToken } from "../../services/token";
+import { useNavigate } from "react-router-dom";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
@@ -18,6 +20,13 @@ export const Menu = () => {
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
   const [dataOrder, setDataOrder] = useState([]);
+  const navigate = useNavigate();
+
+
+  const handleLogout = (e) => {
+    removeToken("token");
+    navigate("/");
+  };
 
   const handleFilter = (option) => {
     getProduct()
@@ -28,17 +37,6 @@ export const Menu = () => {
   const handleMenu = (e) => {
     handleFilter(e.target.value);
   };
-
-  useEffect(() => {
-    handleFilter("breakfast");
-  }, []);
-
-  useEffect(() => {
-    const sum = order.reduce((previousValue, product) => {
-      return previousValue + product.qtd * product.price;
-    }, 0);
-    setTotal(sum);
-  }, [order]);
 
   const handleAddProductOnCommand = (product) => {
     let newOrder = [...order];
@@ -76,14 +74,6 @@ export const Menu = () => {
     setTable(e.target.value);    
   };
   
-  useEffect(() => {
-    console.log(client);
-  }, [client]);
-
-  useEffect(() => {
-    console.log(table);
-  }, [table]);
-
   const handleSendOrder = (e) => {
     sendOrder(client, table, order)
       .then((response) => response.json())
@@ -93,10 +83,33 @@ export const Menu = () => {
       console.log([dataOrder]);
   };   
 
+  useEffect(() => {
+    handleFilter("breakfast");
+  }, []);
+
+  useEffect(() => {
+    console.log(client);
+  }, [client]);
+
+  useEffect(() => {
+    console.log(table);
+  }, [table]);
+
+  useEffect(() => {
+    const sum = order.reduce((previousValue, product) => {
+      return previousValue + product.qtd * product.price;
+    }, 0);
+    setTotal(sum);
+  }, [order]);
+
+
   return (
     <>
       <section className="container-menu">
-        <Header></Header>
+        <Header
+          onClick={handleLogout}        
+        >                 
+        </Header>
         <p className="menu-text">Cardapio</p>
         <article className="container-button">
           <Button onClick={handleMenu} value="breakfast" className="btn-menu">
