@@ -1,7 +1,6 @@
 button {
     display: flex;
     align-items: center;
-    margin: 0 auto;
     color: #F0F1F1;
     font-size: 15px;
     border-radius: 0.5em;
@@ -14,6 +13,7 @@ button {
 
 .btn-register {
     padding: 0.5em 1.5em;
+    margin: 0 auto;
 }
 
 .btn-menu {
@@ -27,7 +27,14 @@ button {
     place-items: center;
 }
 
-.btn-logout {
+.btn-logout, .btn-menu-lateral {
     background: transparent;
+    border: none;
+}
+
+.btn-adc-product {
+    background: #468C4B;
+    border-radius: 10px;
+    padding: 5px;
     border: none;
 }
