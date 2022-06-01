@@ -1,28 +1,40 @@
 import "./style.css";
-export const Card = ({ image, price, name, flavor, complement }) => {
+import { Button } from "../button";
+
+export const Card = ({ image, price, name, flavor, complement, onClick }) => {
   return (
     <>
     <ul className="card">
-      <li className="img-card">
-        <p className='name-products'>{name}</p>
+      <li className="img-card">        
         <img className="img" src={image} alt="ItemCard " />
       </li>
+      <li>
+        <p className="info-products">{name}</p>
+      </li>  
       {
-        flavor != null ?       
+        flavor != null ?     
       <li> 
-        <p className="flavor-products">Sabor:{flavor}</p>
+        <p className="info-products">Sabor:{flavor}</p>
       </li> 
       :""
       }
       { 
         complement != null ?
       <li>
-        <p className="complement-products">Adicional:{complement}</p>
+        <p className="info-products">Adicional:{complement}</p>
       </li>
       :""
       }
       <li>
-        <p className="text-price">Preço: R${price}</p>
+        <p className="info-products">Preço: R${price}</p>
+      </li>
+      <li>
+      <Button
+        className="btn-adc-product"
+        onClick= {onClick}  
+      >
+         +
+      </Button>    
       </li>
     </ul>
     </>

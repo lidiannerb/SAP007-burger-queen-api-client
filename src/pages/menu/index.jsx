@@ -105,7 +105,7 @@ export const Menu = () => {
 
   return (
     <>
-      <section className="container-menu">
+      <section className="container-saloon">
         <Header
           onClick={handleLogout}   
           className="header-container"     
@@ -124,63 +124,73 @@ export const Menu = () => {
           <Button onClick={handleMenu} value="drinks" className="btn-menu">
             Bebidas
           </Button>
-        </aside>
-        <ul className="card-products">
-          {products.map((product) => {
-            return (
-              <li key={`products-${product.id}`}>
-                <Card
-                  name={product.name}
-                  image={product.image}
-                  price={product.price}
-                  flavor={product.flavor}
-                  complement={product.complement}
-                />
-                <Button
-                  className="btn-adc-product"
-                  onClick={() => handleAddProductOnCommand(product)}
-                >
-                  Adicionar
-                </Button>
-              </li>
-            );
-          })}
-        </ul>
-        <ul>
-          <li>
-            <label>Cliente</label>
-            <Input
-              type="text"
-              value={client}
-              onChange={(e) => setClient(e.target.value)}
-            />
-          </li>
-          <li>
-            <SelectTable
-              className="btn-select-table"
-              onChange={handleSelectTable}
-            />
-          </li>
-          {order.map((product) => {
-            return (
-              <li key={`products-order-${product.id}`}>
-                <Command
-                  name={product.name}
-                  price={product.price * product.qtd}
-                  qtd={product.qtd}
-                  onClick={() => handleRemoveProductOnCommand(product)}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        {total != 0 ? <p>Valor total:R${total}</p> : ""}
-        <Button
-          type="button"
-          onClick={handleSendOrder}
-        >
-          Enviar Pedido
-        </Button>
+        </aside>        
+        <section className="container-menu">
+          <section className="show-menu">
+            <article className="card-products-container">
+              <ul className="card-products">
+                {products.map((product) => {
+                  return (
+                    <li key={`products-${product.id}`}>
+                      <Card
+                        name={product.name}
+                        image={product.image}
+                        price={product.price}
+                        flavor={product.flavor}
+                        complement={product.complement}
+                        onClick={() => handleAddProductOnCommand(product)}
+                      />                                    
+
+                    </li>
+                  );
+                })}
+              </ul>
+            </article>
+          </section>   
+          <section className="command-container">
+            <article className="command-info-client">
+              <ul className="">        
+                <li>
+                  <label>Cliente</label>
+                  <Input
+                    type="text"
+                    value={client}
+                    onChange={(e) => setClient(e.target.value)}
+                  />
+                </li>
+                <li>
+                  <SelectTable
+                    className="btn-select-table"
+                    onChange={handleSelectTable}
+                  />
+                </li>
+              </ul>
+            </article>
+            <article>
+              {order.map((product) => {
+                return (  //ta retornando o estilo da li
+                  <li key={`products-order-${product.id}`}>
+                    <Command
+                      name={product.name}
+                      price={product.price * product.qtd}
+                      qtd={product.qtd}
+                      onClick={() => handleRemoveProductOnCommand(product)}
+                    />
+                  </li>
+                );
+              })}
+            </article>   
+            <article>     
+              {total != 0 ? <p>Valor total:R${total}</p> : ""}
+              <Button
+                type="button"
+                onClick={handleSendOrder}
+              >
+                Enviar Pedido
+              </Button>
+            </article>  
+          </section>
+        </section>        
       </section>
     </>
   );
