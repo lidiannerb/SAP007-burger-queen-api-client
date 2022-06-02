@@ -1,0 +1,20 @@
+.btn-select-table{
+  font-size: 16px;
+  padding: 1rem;
+  width: 210px;
+  border: none;
+  border-bottom: 1px solid #DAA927;
+  background: transparent;
+  appearance: none;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: azure;
+}
+
+.btn-select-table:focus {
+  outline: none;
+  color:azure;
+  background: #222222;
+ }
+

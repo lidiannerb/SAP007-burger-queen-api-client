@@ -42,6 +42,7 @@ const Register = () => {
         <article className="register-form-input">
           <label className="label-text">Nome</label>
           <Input
+            className="input"
             placeholder="insira seu nome"
             type="text"
             value={name}
@@ -49,6 +50,7 @@ const Register = () => {
           />
           <label className="label-text">Email</label>
           <Input
+            className="input"
             type="email"
             placeholder="user@user.com"
             value={email}
@@ -56,6 +58,7 @@ const Register = () => {
           />
           <label className="label-text">Senha</label>
           <Input
+            className="input"
             type="password"
             placeholder="xxxxxx"
             value={password}
@@ -82,12 +85,9 @@ const Register = () => {
           />
         </article>
         <article className="form-buttom">
-          <Button 
-            className="btn-register"
-            type="submit" 
-            onClick={handleSubmit}>
-              Cadastrar
-            </Button>
+          <Button className="btn-register" type="submit" onClick={handleSubmit}>
+            Cadastrar
+          </Button>
         </article>
       </form>
     </LayoutForm>

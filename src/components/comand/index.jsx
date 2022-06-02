@@ -1,25 +1,29 @@
-import {Button} from "../button";
+import "./style.css";
+import { IoRemoveCircleOutline, IoAddCircle } from "react-icons/io5";
+import { Button } from "../button";
 
-
-export const Command = ({id, name, price, qtd, onClick }) => {
+export const Command = ({ name, price, qtd, onclick, onClick }) => {
   return (
-    <ul className="card">
-    <li className="img-card">
-      <p>{id}</p>
-      <p className='name-products'>{name}</p>
-    </li>
-    <li>
-      <p className="text-price">Preço: R${price}</p>
-      <p className="text-price">{qtd}</p>
-    </li>
-    <li>
-      <Button
-        className="btn-adc-product"
-        onClick={onClick}              
-      >
-        Remover
-      </Button>
-    </li>
-  </ul>
+    <ul className="command">
+      <li>
+        <p className="info-products">{qtd}</p>
+      </li>
+      <li>
+        <p className="info-products">{name}</p>
+      </li>
+      <li btn-remove-card>
+        <Button className="btn-add-product" onClick={onclick}>
+          <IoAddCircle className="icon-command-add" />
+        </Button>
+      </li>
+      <li>
+        <p className="info-products">R$ {price},00</p>
+      </li>
+      <li className="btn-remove-card">
+        <Button className="btn-remove-product" onClick={onClick}>
+          <IoRemoveCircleOutline className="icon-command-remove" />
+        </Button>
+      </li>
+    </ul>
   );
 };

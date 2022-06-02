@@ -1,0 +1,18 @@
+.command{
+  display: grid;
+  grid-template-columns: 0.3fr 2.5fr 0.3fr 1fr 0.3fr;;
+  min-height: 10vh;
+  justify-items: center;
+
+}
+.icon-command-add{
+  font-size: 20px;
+  color: #468C4B;
+
+}
+
+.icon-command-remove{
+  font-size: 20px;
+  color: #FFC700;
+}
+
