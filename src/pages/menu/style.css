@@ -14,38 +14,108 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .show-menu {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;  
+  display: grid;
   border: 2px solid #DAA927;
   background: #222222;
   width: 90%;
   height: 300px;
   overflow: auto;
+  margin-top: 28px;
+}
+.card-products-container {
+  display: grid;
+  place-items: center;
+}
+.card-container{
+  display: grid;
+  align-items: center;
+  width: 150px;
+  height: 200px;
+  background: #333333;
+  border: 1px solid #4cd137;
   margin-top: 10px;
 }
 
 .card-products {
   display: grid;
   grid-template-columns: repeat(4, 0.2fr);
-  justify-content: center;
-  justify-items: center;
-  gap: 10px;
-  padding: 2rem;  
+  gap: 15px;
 }
 
 .command-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;  
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
   border: 2px solid #DAA927;
   background: #222222;
   width: 90%;
-  height: 300px;
-  overflow: auto;
+  min-height: 40vh;
+  overflow: hidden;
   margin-top: 10px;
 }
+.command-ul {
+  display: grid;
+  grid-column: 1;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+}
 
+.command-ul > .command-input {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding-left: 0.9rem;
+}
+
+.command-ul > .command-select {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding-left: 0.9rem;
+}
+
+.command-ul > .command-total {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding-left: 0.9rem;
+}
+
+.label {
+  color: #FFFFFF;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-top: 5px;
+}
+
+.text-price-command {
+  font-size: 15px;
+  color: azure;
+  padding: 10px 10px 10px 5px;
+  width: 200px;
+  border-bottom: 1px solid #DAA927;
+  text-align: center;
+}
+
+.article-container-command{
+  display: grid;
+  grid-column: 2;
+  grid-template-rows: 1fr 0.5fr
+
+}
+
+.command-ul-card{
+  list-style: none;
+  display: grid;
+  place-self: center;
+}
+
+.aside-container-btn{
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}

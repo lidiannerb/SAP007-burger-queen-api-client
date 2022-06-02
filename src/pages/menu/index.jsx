@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import "./style.css";
-import {SelectTable} from "../../components/SelectTable";
+import { SelectTable } from "../../components/SelectTable";
 import { Button } from "../../components/button";
 import { Card } from "../../components/card";
 import { getProduct } from "../../services/data";
@@ -9,19 +9,18 @@ import { dataFilter } from "../../services/filters";
 import { Command } from "../../components/comand";
 import { Header } from "../../components/header";
 import { Input } from "../../components/inputs";
-import { sendOrder} from "../../services/data";
+import { sendOrder } from "../../services/data";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
   const [table, setTable] = useState("");
-  const [client, setClient] = useState(""); 
+  const [client, setClient] = useState("");
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
   const [dataOrder, setDataOrder] = useState([]);
   const navigate = useNavigate();
-
 
   const handleLogout = (e) => {
     removeToken("token");
@@ -71,17 +70,17 @@ export const Menu = () => {
   };
 
   const handleSelectTable = (e) => {
-    setTable(e.target.value);    
+    setTable(e.target.value);
   };
-  
+
   const handleSendOrder = (e) => {
     sendOrder(client, table, order)
       .then((response) => response.json())
       .then((data) => {
-        setDataOrder(data);      
-      });  
-      console.log([dataOrder]);
-  };   
+        setDataOrder(data);
+      });
+    console.log([dataOrder]);
+  };
 
   useEffect(() => {
     handleFilter("breakfast");
@@ -102,15 +101,10 @@ export const Menu = () => {
     setTotal(sum);
   }, [order]);
 
-
   return (
     <>
       <section className="container-saloon">
-        <Header
-          onClick={handleLogout}   
-          className="header-container"     
-        >                 
-        </Header>
+        <Header onClick={handleLogout} className="header-container"></Header>
         <aside className="container-button">
           <Button onClick={handleMenu} value="breakfast" className="btn-menu">
             Café da manhã
@@ -124,14 +118,17 @@ export const Menu = () => {
           <Button onClick={handleMenu} value="drinks" className="btn-menu">
             Bebidas
           </Button>
-        </aside>        
+        </aside>
         <section className="container-menu">
           <section className="show-menu">
             <article className="card-products-container">
               <ul className="card-products">
                 {products.map((product) => {
                   return (
-                    <li key={`products-${product.id}`}>
+                    <li
+                      className="card-container"
+                      key={`products-${product.id}`}
+                    >
                       <Card
                         name={product.name}
                         image={product.image}
@@ -139,58 +136,67 @@ export const Menu = () => {
                         flavor={product.flavor}
                         complement={product.complement}
                         onClick={() => handleAddProductOnCommand(product)}
-                      />                                    
-
+                      />
                     </li>
                   );
                 })}
               </ul>
             </article>
-          </section>   
-          <section className="command-container">
-            <article className="command-info-client">
-              <ul className="">        
-                <li>
-                  <label>Cliente</label>
-                  <Input
-                    type="text"
-                    value={client}
-                    onChange={(e) => setClient(e.target.value)}
-                  />
-                </li>
-                <li>
-                  <SelectTable
-                    className="btn-select-table"
-                    onChange={handleSelectTable}
-                  />
-                </li>
-              </ul>
-            </article>
-            <article>
-              {order.map((product) => {
-                return (  //ta retornando o estilo da li
-                  <li key={`products-order-${product.id}`}>
-                    <Command
-                      name={product.name}
-                      price={product.price * product.qtd}
-                      qtd={product.qtd}
-                      onClick={() => handleRemoveProductOnCommand(product)}
-                    />
-                  </li>
-                );
-              })}
-            </article>   
-            <article>     
-              {total != 0 ? <p>Valor total:R${total}</p> : ""}
-              <Button
-                type="button"
-                onClick={handleSendOrder}
-              >
-                Enviar Pedido
-              </Button>
-            </article>  
           </section>
-        </section>        
+          <section className="command-container">
+            <ul className="command-ul">
+              <li className="command-input">
+                <Input
+                  className="input-name-client"
+                  type="text"
+                  value={client}
+                  onChange={(e) => setClient(e.target.value)}
+                />
+                <label className="label">Cliente</label>
+              </li>
+              <li className="command-select">
+                <SelectTable
+                  className="btn-select-table"
+                  onChange={handleSelectTable}
+                />
+                <label className="label">Mesa</label>
+              </li>
+              <li className="command-total">
+                <p className="text-price-command">R${total},00</p>
+                <p className="label">Total a pagar</p>
+              </li>
+            </ul>
+            <article className="article-container-command">
+              <ul className="command-ul-card">
+                {order.map((product) => {
+                  return (
+                    <li
+                      className="li-products"
+                      key={`products-order-${product.id}`}
+                    >
+                      <Command
+                        qtd={product.qtd}
+                        name={product.name}
+                        price={product.price * product.qtd}
+                        onclick={() => handleAddProductOnCommand(product)}
+                        onClick={() => handleRemoveProductOnCommand(product)}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+              <aside className="aside-container-btn">
+                <Button
+                  className="btn-send-order"
+                  type="button"
+                  onClick={handleSendOrder}
+                >
+                  Enviar Pedido
+                </Button>
+              </aside>
+            </article>
+          </section>
+        </section>
       </section>
     </>
   );

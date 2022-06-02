@@ -1,4 +1,5 @@
 body {
   font-family: 'Roboto', sans-serif;
   background: #222222;
+  box-sizing: border-box;
 }

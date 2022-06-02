@@ -44,26 +44,23 @@ const Login = () => {
         <article className="login-form-input">
           <label className="label-text">Email</label>
           <Input
+            className="input"
             type="email"
             placeholder="user@user.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
           <label className="label-text">Senha</label>
           <Input
+            className="input"
             type="password"
             placeholder="xxxxxx"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </article>
         <article className="form-buttom-login">
-          <Button 
-            className="btn-register"
-            type="submit"
-            onClick={handleSubmit}>
+          <Button className="btn-register" type="submit" onClick={handleSubmit}>
             Entrar
           </Button>
         </article>
