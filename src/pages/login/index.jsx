@@ -29,6 +29,8 @@ const Login = () => {
         saveToken(data.token);
         if (data.role == "atendent") {
           navigate("/Menu");
+        } else if (data.role == "kitchen") {
+          navigate("/Kitchen");
         } else {
           navigate("/Register");
         }

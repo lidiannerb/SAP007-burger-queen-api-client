@@ -12,6 +12,8 @@ import { Input } from "../../components/inputs";
 import { sendOrder } from "../../services/data";
 import { codeErrorMenu } from "../../services/errors";
 import { handleLogout } from "../../services/handleLogout";
+import { removeToken } from "../../services/token";
+import { useNavigate } from "react-router-dom";
 import ErrorMessages from "../../components/errorMessages";
 
 
@@ -22,7 +24,13 @@ export const Menu = () => {
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
   const [errorCode, setErrorCode] = useState("");
+  const navigate = useNavigate();
+ 
 
+  const handleLogout = () => {    
+      removeToken("token");
+      navigate("/");
+    };
 
   const handleFilter = (option) => {
     getProduct()
@@ -91,7 +99,7 @@ export const Menu = () => {
       });   
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     handleFilter("breakfast");
   }, []);
 
@@ -119,7 +127,7 @@ export const Menu = () => {
   return (
     <>
       <section className="container-saloon">
-        <Header onClick={handleLogout} className="header-container"></Header>
+        <Header onClick={handleLogout}></Header>
         <aside className="container-button">
           <Button onClick={handleMenu} value="breakfast" className="btn-menu">
             Café da manhã
@@ -173,6 +181,7 @@ export const Menu = () => {
                 <SelectTable
                   className="btn-select-table"
                   onChange={handleSelectTable}
+                  value={table}
                 />
                 <label className="label">Mesa</label>
               </li>

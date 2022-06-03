@@ -6,9 +6,9 @@ import { Button } from "../button";
 import "./style.css";
 
 
-export function Header({ className, onClick }){
+export function Header({ onClick }){
   return (
-    <header className={className}>
+    <header className="header-container">
       <Button
         className="btn-menu-lateral"
       >
