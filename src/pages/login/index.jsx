@@ -5,14 +5,16 @@ import { Input } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { userLogin } from "../../services/data";
-import { codeError } from "../../services/errors";
+import { codeErrorLogin } from "../../services/errors";
 import { saveToken } from "../../services/token";
 import { Logo } from "../../components/logo";
+import ErrorMessages from "../../components/errorMessages";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [errorCode, setErrorCode] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
         if (response.status === 200) {
           return response.json();
         }
-        codeError(response);
+        setErrorCode(codeErrorLogin(response));
       })
       .then((data) => {
         saveToken(data.token);
@@ -41,6 +43,10 @@ const Login = () => {
         <span className="login-form-title">
           <Logo />
         </span>
+        <ErrorMessages 
+          disable={errorCode ? false : true}
+          errorMessages={errorCode}
+        />
         <article className="login-form-input">
           <label className="label-text">Email</label>
           <Input

@@ -118,4 +118,6 @@
   display: grid;
   justify-items: center;
   align-items: center;
+  color: red;
+  font-style: italic;
 }

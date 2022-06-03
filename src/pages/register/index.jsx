@@ -5,14 +5,16 @@ import { Button } from "../../components/button";
 import { Logo } from "../../components/logo";
 import { LayoutForm } from "../../components/layout";
 import { createUser } from "../../services/data";
-import { codeError } from "../../services/errors";
+import { codeErrorRegister } from "../../services/errors";
 import { saveToken, saveRole } from "../../services/token";
+import ErrorMessages from "../../components/errorMessages";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [errorCode, setErrorCode] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Register = () => {
         if (response.status === 200) {
           return response.json();
         }
-        codeError(response);
+        setErrorCode(codeErrorRegister(response));
       })
       .then((data) => {
         saveToken(data.token);
@@ -39,8 +41,13 @@ const Register = () => {
         <article className="register-form-title">
           <Logo />
         </article>
-        <article className="register-form-input">
-          <label className="label-text">Nome</label>
+          <ErrorMessages 
+            disable={errorCode ? false : true}
+            errorMessages={errorCode}
+          />
+
+         <article className="register-form-input">
+          <label className="label-text">Nome</label>          
           <Input
             className="input"
             placeholder="insira seu nome"
