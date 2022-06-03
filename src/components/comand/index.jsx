@@ -11,7 +11,7 @@ export const Command = ({ name, price, qtd, onclick, onClick }) => {
       <li>
         <p className="info-products">{name}</p>
       </li>
-      <li btn-remove-card>
+      <li btn-add-card>
         <Button className="btn-add-product" onClick={onclick}>
           <IoAddCircle className="icon-command-add" />
         </Button>
