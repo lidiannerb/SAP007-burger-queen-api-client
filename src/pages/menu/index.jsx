@@ -10,10 +10,10 @@ import { Command } from "../../components/comand";
 import { Header } from "../../components/header";
 import { Input } from "../../components/inputs";
 import { sendOrder } from "../../services/data";
-import { removeToken } from "../../services/token";
-import { useNavigate } from "react-router-dom";
 import { codeErrorMenu } from "../../services/errors";
+import { handleLogout } from "../../services/handleLogout";
 import ErrorMessages from "../../components/errorMessages";
+
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
@@ -21,14 +21,8 @@ export const Menu = () => {
   const [client, setClient] = useState("");
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
-  const [dataOrder, setDataOrder] = useState([]);
   const [errorCode, setErrorCode] = useState("");
-  const navigate = useNavigate();
 
-  const handleLogout = (e) => {
-    removeToken("token");
-    navigate("/");
-  };
 
   const handleFilter = (option) => {
     getProduct()
@@ -90,10 +84,11 @@ export const Menu = () => {
         setErrorCode(codeErrorMenu(response));
         hideError();
       })  
-      .then((data) => {
-        setDataOrder(data);
-      });
-    console.log([dataOrder]);
+      .then(() => {
+        setOrder([]);
+        setTable("");
+        setClient("");
+      });   
   };
 
   useEffect(() => {
