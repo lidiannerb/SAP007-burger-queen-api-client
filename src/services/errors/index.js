@@ -1,19 +1,34 @@
-export function codeError (response){
-    //let errorMessage = "";
+export function codeErrorLogin (response){
     switch (response.status){
         case 400:
-            alert("preencha todos os campos ou senha e email incorretos");
-            break;
+            return "Campos obrigatórios ausentes ou dados incorretos";
         case 401:
-            alert("Usuário não autenticado");
-            break;
-        case 403:
-            alert("Email ja cadastrado ou dados não preenchidos");
-          break;
+            return "Usuário não autenticado";
         case 404:
-            alert("usuario não encontrado");
-            break;
+            return "usuario não encontrado";
         default:
-          alert("ocorreu um erro");
+          return "ocorreu um erro";
+    }
+}
+
+export function codeErrorRegister (response){
+    switch (response.status){
+        case 400:
+            return "Campos obrigatórios ausentes";
+        case 403:
+            return "E-mail ja cadastrado";
+        case 404:
+            return "usuario não encontrado";
+        default:
+          return "ocorreu um erro";
+    }
+}
+
+export function codeErrorMenu (response){
+    switch (response.status){
+        case 400:
+            return "Necessário informar nome e mesa do cliente";
+        default:
+          return "ocorreu um erro";
     }
 }

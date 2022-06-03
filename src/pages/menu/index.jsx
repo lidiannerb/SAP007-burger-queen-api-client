@@ -12,6 +12,8 @@ import { Input } from "../../components/inputs";
 import { sendOrder } from "../../services/data";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
+import { codeErrorMenu } from "../../services/errors";
+import ErrorMessages from "../../components/errorMessages";
 
 export const Menu = () => {
   const [products, setProducts] = useState([]);
@@ -20,6 +22,7 @@ export const Menu = () => {
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
   const [dataOrder, setDataOrder] = useState([]);
+  const [errorCode, setErrorCode] = useState("");
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -29,7 +32,12 @@ export const Menu = () => {
 
   const handleFilter = (option) => {
     getProduct()
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+      setErrorCode(codeErrorMenu(response));
+      })
       .then((data) => setProducts(dataFilter(data, option)));
   };
 
@@ -75,7 +83,13 @@ export const Menu = () => {
 
   const handleSendOrder = (e) => {
     sendOrder(client, table, order)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        setErrorCode(codeErrorMenu(response));
+        hideError();
+      })  
       .then((data) => {
         setDataOrder(data);
       });
@@ -100,6 +114,12 @@ export const Menu = () => {
     }, 0);
     setTotal(sum);
   }, [order]);
+
+  function hideError() {
+    setTimeout(() => {
+      setErrorCode("");
+    }, 5000);
+  }
 
   return (
     <>
@@ -186,6 +206,10 @@ export const Menu = () => {
                 })}
               </ul>
               <aside className="aside-container-btn">
+                <ErrorMessages
+                  disable={errorCode ? false : true}
+                  errorMessages={errorCode}              
+                />
                 <Button
                   className="btn-send-order"
                   type="button"
