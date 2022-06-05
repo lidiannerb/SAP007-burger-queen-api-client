@@ -1,0 +1,27 @@
+.btn-toggle {
+  position: absolute;
+  width: 100%;
+  /* top: 40px;
+  left: 40px; */
+  z-index: 10;
+}
+
+.menu-nav {
+  /* overflow-y: scroll; */
+  list-style: none;
+  position: fixed;
+  height: 50vh;
+  width: 0;
+  overflow: hidden;
+  max-width: 290px;
+  z-index: 9;
+  color: #fff;
+}
+
+.menu-nav.show-menu {
+  width: 50%;
+}
+
+/* .menu-nav li:first-child {
+  margin-top: 7rem;
+} */
