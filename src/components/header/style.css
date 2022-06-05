@@ -1,15 +1,21 @@
 .header-container {
   background: #222222;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr;
   padding: 1rem;
 }
 
-.header-container-ul {
-  display: flex;
-  justify-content: space-evenly;
+.header-container > .image-container {
+  display: grid;
+  grid-column: 2;
+  justify-content: center;
 }
 
+.header-container > .btn-logout-container {
+  display: grid;
+  grid-column: 3;
+  justify-content: end;
+}
 
 .icon{
   font-size: 40px;

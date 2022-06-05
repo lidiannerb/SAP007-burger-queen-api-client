@@ -34,14 +34,10 @@ button {
   padding: 0.5em 1.5em;
   filter: none;
   display: block;
-
-
 }
 
-
-.btn-logout, .btn-menu-lateral, .btn-remove-product, .btn-add-product  {
+.btn-logout, .btn-menu-lateral, .btn-remove-product, .btn-add-product, .btn-toggle  {
   background: transparent;
   border: none;
   filter: none;
 }
-
