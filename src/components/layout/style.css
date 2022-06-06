@@ -1,5 +1,6 @@
 .container {
     width: 100%;
+    overflow: hidden;
 }
 
 .container-form {
@@ -16,7 +17,7 @@
 
 .wrap-form {
     width: 350px;
-    height: 400px;
+    height: 450px;
     background: #DAA927;
     border-radius: 30px;
     padding: 45px 50px;

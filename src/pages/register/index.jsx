@@ -1,12 +1,13 @@
-import { useState } from "react";
 import "./style.css";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { Input } from "../../components/inputs";
 import { Button } from "../../components/button";
 import { Logo } from "../../components/logo";
 import { LayoutForm } from "../../components/layout";
 import { createUser } from "../../services/data";
 import { codeErrorRegister } from "../../services/errors";
-import { saveToken, saveRole } from "../../services/token";
+import { saveToken } from "../../services/token";
 import ErrorMessages from "../../components/errorMessages";
 
 const Register = () => {
@@ -15,6 +16,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [errorCode, setErrorCode] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,11 +29,15 @@ const Register = () => {
       })
       .then((data) => {
         saveToken(data.token);
-        saveRole(data.role);
+        if (data.role == "atendent") {
+          navigate("/Menu");
+        } else if (data.role == "kitchen") {
+          navigate("/Kitchen");
+        } else {
+          navigate("/");
+        }
       })
-      // redirecionar para a tela de produtos
-      .catch((error) => console.log(error));
-    // mostrar os erros caso não consiga bater no fecht
+      .catch((error) => codeErrorRegister(error));
   };
 
   return (
@@ -41,13 +47,13 @@ const Register = () => {
         <article className="register-form-title">
           <Logo />
         </article>
-          <ErrorMessages 
-            disable={errorCode ? false : true}
-            errorMessages={errorCode}
-          />
+        <ErrorMessages
+          disable={errorCode ? false : true}
+          errorMessages={errorCode}
+        />
 
-         <article className="register-form-input">
-          <label className="label-text">Nome</label>          
+        <article className="register-form-input">
+          <label className="label-text">Nome</label>
           <Input
             className="input"
             placeholder="insira seu nome"
@@ -95,6 +101,14 @@ const Register = () => {
           <Button className="btn-register" type="submit" onClick={handleSubmit}>
             Cadastrar
           </Button>
+        </article>
+        <article className="redirect-register">
+          <p className="redirect-register-text">
+            Já tem uma conta?
+            <Link to="/" className="link">
+              Login
+            </Link>
+          </p>
         </article>
       </form>
     </LayoutForm>
