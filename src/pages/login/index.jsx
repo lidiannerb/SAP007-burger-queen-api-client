@@ -13,8 +13,8 @@ import ErrorMessages from "../../components/errorMessages";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const [errorCode, setErrorCode] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const Login = () => {
         <span className="login-form-title">
           <Logo />
         </span>
-        <ErrorMessages 
+        <ErrorMessages
           disable={errorCode ? false : true}
           errorMessages={errorCode}
         />
