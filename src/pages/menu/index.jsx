@@ -15,7 +15,6 @@ import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import ErrorMessages from "../../components/errorMessages";
 
-
 export const Menu = () => {
   const [products, setProducts] = useState([]);
   const [table, setTable] = useState("");
@@ -28,14 +27,13 @@ export const Menu = () => {
     breakfast: true,
     side: false,
     drinks: false,
-    hamburguer: false
-    });
- 
+    hamburguer: false,
+  });
 
-  const handleLogout = () => {    
-      removeToken("token");
-      navigate("/");
-    };
+  const handleLogout = () => {
+    removeToken("token");
+    navigate("/");
+  };
 
   const handleFilter = (option) => {
     getProduct()
@@ -43,20 +41,57 @@ export const Menu = () => {
         if (response.status === 200) {
           return response.json();
         }
-      setErrorCode(codeErrorMenu(response));
+        setErrorCode(codeErrorMenu(response));
       })
       .then((data) => setProducts(dataFilter(data, option)));
   };
 
   const handleMenu = (e) => {
-    const value = e.target.value;    
-    handleFilter(value);   
-    setButtonMenuStatus({
-      side:true,
-      hamburguer:true,
+    const value = e.target.value;
+    handleFilter(value);
+    const newStatus = {
+      breakfast: false,
+      side: false,
+      drinks: false,
+      hamburguer: false,
+    };
+    newStatus[value] = true;
+    setButtonMenuStatus(newStatus);
 
-    }); //ver o value e dentro do button menu status e mudar o correspondente pra true
-    
+    // if (value === "drinks") {
+    //   setButtonMenuStatus({
+    //     breakfast: false,
+    //     side: false,
+    //     hamburguer: false,
+    //     drinks: true,
+    //   });
+    // }
+    // if (value === "breakfast") {
+    //   setButtonMenuStatus({
+    //     breakfast: true,
+    //     side: false,
+    //     hamburguer: false,
+    //     drinks: false,
+    //   });
+    // }
+
+    // if (value === "side") {
+    //   setButtonMenuStatus({
+    //     breakfast: false,
+    //     side: true,
+    //     hamburguer: false,
+    //     drinks: false,
+    //   });
+    // }
+
+    // if (value === "hamburguer") {
+    //   setButtonMenuStatus({
+    //     breakfast: false,
+    //     side: false,
+    //     hamburguer: true,
+    //     drinks: false,
+    //   });
+    // }
   };
 
   const handleAddProductOnCommand = (product) => {
@@ -103,15 +138,15 @@ export const Menu = () => {
         }
         setErrorCode(codeErrorMenu(response));
         hideError();
-      })  
+      })
       .then(() => {
         setOrder([]);
         setTable("");
         setClient("");
-      });   
+      });
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     handleFilter("breakfast");
   }, []);
 
@@ -141,16 +176,36 @@ export const Menu = () => {
       <section className="container-saloon">
         <Header onClick={handleLogout}></Header>
         <aside className="container-button">
-        <Button onClick={handleMenu} value="breakfast" className={`btn-menu ${buttonMenuStatus.breakfast ? "active-filter" : ""}`} >
+          <Button
+            onClick={handleMenu}
+            value="breakfast"
+            className={`btn-menu ${
+              buttonMenuStatus.breakfast && "active-filter"
+            }`}
+          >
             Café da manhã
           </Button>
-          <Button onClick={handleMenu} value="side" className={`btn-menu ${buttonMenuStatus.side ? "active-filter" : ""}`}>
+          <Button
+            onClick={handleMenu}
+            value="side"
+            className={`btn-menu ${buttonMenuStatus.side && "active-filter"}`}
+          >
             Entrada
           </Button>
-          <Button onClick={handleMenu} value="hamburguer" className={`btn-menu ${buttonMenuStatus.hamburguer ? "active-filter" : ""}`}>
+          <Button
+            onClick={handleMenu}
+            value="hamburguer"
+            className={`btn-menu ${
+              buttonMenuStatus.hamburguer && "active-filter"
+            }`}
+          >
             Hamburgueres
           </Button>
-          <Button onClick={handleMenu} value="drinks" className={`btn-menu ${buttonMenuStatus.drinks ? "active-filter" : ""}`}>
+          <Button
+            onClick={handleMenu}
+            value="drinks"
+            className={`btn-menu ${buttonMenuStatus.drinks && "active-filter"}`}
+          >
             Bebidas
           </Button>
         </aside>
@@ -224,7 +279,7 @@ export const Menu = () => {
               <aside className="aside-container-btn">
                 <ErrorMessages
                   disable={errorCode ? false : true}
-                  errorMessages={errorCode}              
+                  errorMessages={errorCode}
                 />
                 <Button
                   className="btn-send-order"
