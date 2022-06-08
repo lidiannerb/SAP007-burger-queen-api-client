@@ -4,6 +4,7 @@ import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../services/data";
 import CardOrder from "../../components/cardOrder";
+
 import "./style.css";
 
 export const Kitchen = () => {
@@ -55,22 +56,10 @@ export const Kitchen = () => {
                   status={item.status}
                   createAt={item.createdAt}
                   updateAt={item.updatedAt}
-                  products={item.Products.map((productList)=> {
-                    return (
-                      <>
-                        <li key={`productList-${productList.id}`}>
-                          <p>
-                            {productList.name}
-                            {productList.flavor}
-                            {productList.complement}
-                            {productList.qtd}
-                          </p>
-                        </li>
-                      </>
-                    );
-                  })}
+                  products={item.Products}
                 />
               </li>
+
             );
           })}
 

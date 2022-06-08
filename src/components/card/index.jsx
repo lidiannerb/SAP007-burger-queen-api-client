@@ -2,13 +2,15 @@ import "./style.css";
 import { IoAddCircle } from "react-icons/io5";
 import { Button } from "../button";
 
-export const Card = ({ image, price, name, flavor, complement, onClick }) => {
+export const Card = ({ image, price, name, flavor, complement, onClick, qtd }) => {
   return (
     <>
       <ul className="card">
-        <li className="img-card">
+        {image && (
+          <li className="img-card">
           <img className="img" src={image} alt="ItemCard " />
         </li>
+        )} 
         <li className="name-card">
           <p className="info-products">{name}</p>
         </li>
@@ -26,14 +28,19 @@ export const Card = ({ image, price, name, flavor, complement, onClick }) => {
         ) : (
           ""
         )}
-        <li className="price-card">
+        {price && (<li className="price-card">
           <p className="info-products">Preço: R${price}</p>
-        </li>
-        <li className="btn-card">
+        </li>)}
+
+        {qtd && (<li className="price-card">
+          <p className="info-products">Quantidade:{qtd}</p>
+        </li>)}
+
+        {onClick && (<li className="btn-card">
           <Button className="btn-add-product" onClick={onClick}>
             <IoAddCircle className="icon-card-add" />
           </Button>
-        </li>
+        </li>)}
       </ul>
     </>
   );
