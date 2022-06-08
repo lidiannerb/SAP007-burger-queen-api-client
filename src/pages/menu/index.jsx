@@ -52,7 +52,11 @@ export const Menu = () => {
   const handleMenu = (e) => {
     const value = e.target.value;    
     handleFilter(value);   
-    setButtonMenuStatus(value); //ver o value e dentro do button menu status e mudar o correspondente pra true
+    setButtonMenuStatus({
+      side:true,
+      hamburguer:true,
+
+    }); //ver o value e dentro do button menu status e mudar o correspondente pra true
     
   };
 
