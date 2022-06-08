@@ -25,6 +25,12 @@ export const Menu = () => {
   const [total, setTotal] = useState(0);
   const [errorCode, setErrorCode] = useState("");
   const navigate = useNavigate();
+  const [buttonMenuStatus, setButtonMenuStatus] = useState({
+    breakfast: true,
+    side: false,
+    drinks: false,
+    hamburguer: false
+    });
  
 
   const handleLogout = () => {    
@@ -44,7 +50,10 @@ export const Menu = () => {
   };
 
   const handleMenu = (e) => {
-    handleFilter(e.target.value);
+    const value = e.target.value;    
+    handleFilter(value);   
+    setButtonMenuStatus(value); //ver o value e dentro do button menu status e mudar o correspondente pra true
+    
   };
 
   const handleAddProductOnCommand = (product) => {
@@ -129,16 +138,16 @@ export const Menu = () => {
       <section className="container-saloon">
         <Header onClick={handleLogout}></Header>
         <aside className="container-button">
-          <Button onClick={handleMenu} value="breakfast" className="btn-menu">
+        <Button onClick={handleMenu} value="breakfast" className={`btn-menu ${buttonMenuStatus.breakfast ? "active-filter" : ""}`} >
             Café da manhã
           </Button>
-          <Button onClick={handleMenu} value="side" className="btn-menu">
+          <Button onClick={handleMenu} value="side" className={`btn-menu ${buttonMenuStatus.side ? "active-filter" : ""}`}>
             Entrada
           </Button>
-          <Button onClick={handleMenu} value="hamburguer" className="btn-menu">
+          <Button onClick={handleMenu} value="hamburguer" className={`btn-menu ${buttonMenuStatus.hamburguer ? "active-filter" : ""}`}>
             Hamburgueres
           </Button>
-          <Button onClick={handleMenu} value="drinks" className="btn-menu">
+          <Button onClick={handleMenu} value="drinks" className={`btn-menu ${buttonMenuStatus.drinks ? "active-filter" : ""}`}>
             Bebidas
           </Button>
         </aside>
