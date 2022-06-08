@@ -13,7 +13,7 @@ return fetch(`${URL}/users`, {
       email: email,
       password: password,
       role: role,
-      restaurant: "restaurant 123",
+      restaurant: "heisenburger",
     })
 });
 };
@@ -37,7 +37,7 @@ export const getProduct = () => {
     method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": getToken("token")
+        "Authorization": getToken()
       }
   });
 };
@@ -47,7 +47,7 @@ export const sendOrder = (client, table, products) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": getToken("token")
+      "Authorization": getToken()
     },
     body: JSON.stringify({
       client: client,
@@ -64,7 +64,7 @@ export const getOrders = () => {
       "Content-Type": "application/json",
       "Authorization": getToken()
     },
-  }).then((res) => res.json());
+  });
 };
 
 // export const updateOrderStatus = (id, status) => {

@@ -11,7 +11,6 @@ import { Header } from "../../components/header";
 import { Input } from "../../components/inputs";
 import { sendOrder } from "../../services/data";
 import { codeErrorMenu } from "../../services/errors";
-import { handleLogout } from "../../services/handleLogout";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import ErrorMessages from "../../components/errorMessages";
