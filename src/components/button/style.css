@@ -26,6 +26,11 @@ button {
   display: grid;
   place-items: center;
 }
+
+.btn-menu.active-filter {
+  background: #F80B0B;
+}
+
 .btn-send-order {
   background: #468C4B;
   border-radius: 30px;
@@ -41,3 +46,4 @@ button {
   border: none;
   filter: none;
 }
+
