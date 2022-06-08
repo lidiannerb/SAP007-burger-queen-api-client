@@ -1,5 +1,5 @@
 import "./style.css";
-
+import { Card } from "../../components/card";
 
 const CardOrder = ({id, client, table, status, createAt, updateAt, products }) => {
   return ( 
@@ -24,8 +24,21 @@ const CardOrder = ({id, client, table, status, createAt, updateAt, products }) =
         Atualização:{updateAt}
       </li>
       <li>
-        Produtos:{products}
-      </li>
+        Produtos:
+           {products.map((productList)=> {
+            return (
+              <div key={`productList-${productList.id}`}>                
+                <Card
+                name={productList.name}
+                flavor={productList.flavor}
+                qtd={productList.qtd}
+                complement={productList.complement}
+                >
+                </Card>
+              </div>
+            );
+           })}
+        </li>      
     </ul>
   </> );
 };
