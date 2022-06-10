@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../services/data";
 import CardOrder from "../../components/cardOrder";
 import { dateOrder } from "../../services/dateOrder";
+// import { updateOrder } from "../../services/data";
 
 import "./style.css";
 
@@ -13,7 +14,6 @@ export const Kitchen = () => {
 
 
   const navigate = useNavigate();
-
   const handleLogout = () => {    
     removeToken("token");
     navigate("/");
@@ -24,6 +24,7 @@ export const Kitchen = () => {
     .then((response) => response.json())
     .then((data) => setOrder(data));
   },[]);
+
 
 
   return (
@@ -44,7 +45,7 @@ export const Kitchen = () => {
                   table={item.table}
                   status={item.status}
                   createAt={dateOrder(item.createdAt)}
-                  updateAt={item.updatedAt}
+                  updateAt={dateOrder(item.updatedAt)}
                   products={item.Products}
                 />
               </li>
