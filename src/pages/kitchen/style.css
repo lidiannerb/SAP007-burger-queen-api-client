@@ -3,3 +3,14 @@
   flex-wrap: wrap;
   
 }
+
+.all-orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.li-all-orders {
+  width: 200px;
+  min-height: 350px;
+}
