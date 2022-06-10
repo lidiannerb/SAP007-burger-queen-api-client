@@ -4,6 +4,8 @@ import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../services/data";
 import CardOrder from "../../components/cardOrder";
+import { dateOrder } from "../../services/dateOrder";
+// import { updateOrder } from "../../services/data";
 
 import "./style.css";
 
@@ -12,7 +14,6 @@ export const Kitchen = () => {
 
 
   const navigate = useNavigate();
-
   const handleLogout = () => {    
     removeToken("token");
     navigate("/");
@@ -25,17 +26,6 @@ export const Kitchen = () => {
   },[]);
 
 
-//   const receivingOrders = () => {
-//     getOrders()
-//     .then((response) => {
-//       if (response.status === 200) {
-//         return response.json();
-//       }
-//     setErrorCode(codeErrorMenu(response));
-//     })
-//     .then((data) => setOrder(data));
-// };
-//   console.log(receivingOrders);
 
   return (
     <>
@@ -45,17 +35,17 @@ export const Kitchen = () => {
         />
       </section>
       <section>
-        <ul>
+        <ul className="all-orders" >
           {order.map((item) => {
             return (
-              <li key={`item-${item.id}`}> 
+              <li className="li-all-orders" key={`item-${item.id}`}> 
                 <CardOrder 
                   id={item.id}
                   client={item.client_name}
                   table={item.table}
                   status={item.status}
-                  createAt={item.createdAt}
-                  updateAt={item.updatedAt}
+                  createAt={dateOrder(item.createdAt)}
+                  updateAt={dateOrder(item.updatedAt)}
                   products={item.Products}
                 />
               </li>

@@ -67,16 +67,25 @@ export const getOrders = () => {
   });
 };
 
-// export const updateOrderStatus = (id, status) => {
-//   id = id.toString();
-//   return fetch(`${URL}/orders` ${id}, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Authorization": getToken(),
-//     },
-//     body: JSON.stringify({
-//       status
-//     })
-//   }).then((res) => res.json());
-// };
+export const updateOrder = (id, status) => {
+  return fetch(`${URL}/orders/${id}` , {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": getToken(),
+    },
+    body: JSON.stringify({
+      status
+    })
+  });
+};
+
+export const deleteOrder = (orderId) => {
+  return fetch(`${URL}/orders/${orderId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": getToken(),
+    },
+  });
+};

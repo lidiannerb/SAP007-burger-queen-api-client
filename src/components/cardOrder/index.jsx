@@ -5,7 +5,7 @@ const CardOrder = ({id, client, table, status, createAt, updateAt, products }) =
   return ( 
   <>
     <ul className="items-order-container">
-      <li>
+      <li className="info-products">
         <p>
           Pedido nº{id}
         </p>
@@ -14,16 +14,16 @@ const CardOrder = ({id, client, table, status, createAt, updateAt, products }) =
           Mesa: {table}
         </p>
       </li>
-      <li>
+      <li className="info-products">
         Status: {status}
       </li>
-      <li>
+      <li className="info-products">
         Criação:{createAt}
       </li>
-      <li>
+      <li className="info-products">
         Atualização:{updateAt}
       </li>
-      <li>
+      <li className="info-products">
         Produtos:
            {products.map((productList)=> {
             return (
