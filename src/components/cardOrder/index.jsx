@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./style.css";
 import { Card } from "../../components/card";
 
@@ -9,6 +10,7 @@ const CardOrder = ({
   createAt,
   updateAt,
   processedAt,
+  preparationTime,
   products,
 }) => {
   return (
@@ -24,8 +26,9 @@ const CardOrder = ({
         <li className="info-products">Status: {status}</li>
         <li className="info-products">Criação:{createAt}</li>
         <li className="info-products">
-          Processado:{processedAt}
-          Atualização:{updateAt}
+          {/* Processado:{processedAt} */}
+          Tempo de preparo:{preparationTime}
+          {/* Atualização:{updateAt} */}
         </li>
         <li className="info-products">
           Produtos:
