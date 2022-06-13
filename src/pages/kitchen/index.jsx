@@ -27,11 +27,12 @@ export const Kitchen = () => {
 
   useEffect(() => {
     console.log(order);
-  },[order]);
+  }, [order]);
 
   const handleUpdateStatus = (item, e) => {
-    updateOrder(item.id, e.status)
-    .then((response) => {
+    console.log(item.id);
+    console.log(e.target.value);
+    updateOrder(item.id, e.target.value).then((response) => {
       if (response.status === 200) {
         const resultResponse = order.map((element) => {
           if (element.id === item.id) {
@@ -66,14 +67,23 @@ export const Kitchen = () => {
                   processedAt={dateOrder(item.processedAt)}
                   products={item.Products}
                 />
-                {item.status === "pending" ?                 
-                <Button onClick={(e) => handleUpdateStatus(item, e)} value="preparing">
-                  Preparar
-                </Button> : item.status === "preparing" && <Button onClick={(e) => handleUpdateStatus(item, e)} value="done">
-                  Pronto
-                </Button>
-                }
-                
+                {item.status === "pending" ? (
+                  <Button
+                    onClick={(e) => handleUpdateStatus(item, e)}
+                    value="preparing"
+                  >
+                    Preparar
+                  </Button>
+                ) : (
+                  item.status === "preparing" && (
+                    <Button
+                      onClick={(e) => handleUpdateStatus(item, e)}
+                      value="done"
+                    >
+                      Pronto
+                    </Button>
+                  )
+                )}
               </li>
             );
           })}
