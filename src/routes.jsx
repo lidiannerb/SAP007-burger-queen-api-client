@@ -9,6 +9,7 @@ import Register from "./pages/register";
 import {Menu} from "./pages/menu";
 import {Kitchen} from "./pages/kitchen";
 import {getToken} from "./services/token";
+import { ReadyOrders } from "./pages/readyOrders";
 
 const PrivateRoute = ({ children, redirectTo}) => {
   const isAuthenticated = getToken("") !== null;
@@ -28,6 +29,9 @@ const RedirectRoutes = () => {
         </PrivateRoute>}/>
         <Route path="/Kitchen" element={<PrivateRoute redirectTo="/"> 
           <Kitchen />
+        </PrivateRoute>}/>
+        <Route path="/ReadyOrders" element={<PrivateRoute redirectTo="/"> 
+          <ReadyOrders />
         </PrivateRoute>}/>
       </Routes>
     </Router>
