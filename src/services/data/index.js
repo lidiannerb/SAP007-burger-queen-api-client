@@ -74,9 +74,7 @@ export const updateOrder = (id, status) => {
       "Content-Type": "application/json",
       "Authorization": getToken(),
     },
-    body: JSON.stringify({
-      status: status
-    })
+    body: JSON.stringify({status})
   });
 };
 
