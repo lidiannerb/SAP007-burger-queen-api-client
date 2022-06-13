@@ -5,7 +5,8 @@ import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../services/data";
 import CardOrder from "../../components/cardOrder";
-import { dateOrder } from "../../services/dateOrder";
+import { dateOrder, preparationTime } from "../../services/dateOrder";
+import { dataFilterOrder } from "../../services/filters";
 import { updateOrder } from "../../services/data";
 
 import "./style.css";
@@ -19,10 +20,13 @@ export const Kitchen = () => {
     navigate("/");
   };
 
-  useEffect(() => {
+  function filterOrder() {
     getOrders()
       .then((response) => response.json())
-      .then((data) => setOrder(data));
+      .then((data) => setOrder(dataFilterOrder(data, "done")));
+  }
+  useEffect(() => {
+    filterOrder();
   }, []);
 
   useEffect(() => {
@@ -63,8 +67,11 @@ export const Kitchen = () => {
                   table={item.table}
                   status={item.status}
                   createAt={dateOrder(item.createdAt)}
-                  updateAt={dateOrder(item.updatedAt)}
-                  processedAt={dateOrder(item.processedAt)}
+                  //updateAt={dateOrder(item.updatedAt)}
+                  preparationTime={preparationTime(
+                    item.createdAt,
+                    item.processedAt
+                  )}
                   products={item.Products}
                 />
                 {item.status === "pending" ? (
