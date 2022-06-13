@@ -1,58 +1,72 @@
 import { useState, useEffect } from "react";
 import { Header } from "../../components/header";
+import { Button } from "../../components/button";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../services/data";
 import CardOrder from "../../components/cardOrder";
 import { dateOrder } from "../../services/dateOrder";
-// import { updateOrder } from "../../services/data";
+import { updateOrder } from "../../services/data";
 
 import "./style.css";
 
 export const Kitchen = () => {
   const [order, setOrder] = useState([]);
 
-
   const navigate = useNavigate();
-  const handleLogout = () => {    
+  const handleLogout = () => {
     removeToken("token");
     navigate("/");
   };
 
   useEffect(() => {
     getOrders()
-    .then((response) => response.json())
-    .then((data) => setOrder(data));
-  },[]);
+      .then((response) => response.json())
+      .then((data) => setOrder(data));
+  }, []);
 
-
+  const handleUpdateStatus = (item, status) => {
+    updateOrder(item.id, status).then((response) => {
+      if (response.status === 200) {
+        const resultResponse = order.map((element) => {
+          if (element.id === item.id) {
+            element.status = status;
+            console.log(status);
+          }
+          console.log(element);
+          return element;
+        });
+        setOrder(resultResponse);
+      }
+    });
+  };
 
   return (
     <>
       <section>
-        <Header 
-        onClick={handleLogout}
-        />
+        <Header onClick={handleLogout} />
       </section>
       <section>
-        <ul className="all-orders" >
+        <ul className="all-orders">
           {order.map((item) => {
             return (
-              <li className="li-all-orders" key={`item-${item.id}`}> 
-                <CardOrder 
+              <li className="li-all-orders" key={`item-${item.id}`}>
+                <CardOrder
                   id={item.id}
                   client={item.client_name}
                   table={item.table}
                   status={item.status}
                   createAt={dateOrder(item.createdAt)}
                   updateAt={dateOrder(item.updatedAt)}
+                  processedAt={dateOrder(item.processedAt)}
                   products={item.Products}
                 />
+                <Button onClick={() => handleUpdateStatus(item)}>
+                  preparar
+                </Button>
               </li>
-
             );
           })}
-
         </ul>
       </section>
     </>

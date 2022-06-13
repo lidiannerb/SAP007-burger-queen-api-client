@@ -7,7 +7,7 @@ return fetch(`${URL}/users`, {
     headers: {
       "Content-Type": "application/json",
     },
-  
+
     body: JSON.stringify({
       name: name,
       email: email,
@@ -52,7 +52,7 @@ export const sendOrder = (client, table, products) => {
     body: JSON.stringify({
       client: client,
       table: table,
-      products: products,  
+      products: products,
     })
   });
 };
@@ -75,7 +75,7 @@ export const updateOrder = (id, status) => {
       "Authorization": getToken(),
     },
     body: JSON.stringify({
-      status
+      status: status
     })
   });
 };
