@@ -20,8 +20,15 @@ export const ReadyOrders = () => {
   const filterOrderDone = () => {
     getOrders()
       .then((response) => response.json())
-      .then((data) => setOrdersDone(dataFilterOrdersDone(data, "done")));
+      .then((data) => {
+        const filteredOrders = dataFilterOrdersDone(data, "done");
+        const sortedOrders = filteredOrders; // fazer o sort
+        setOrdersDone(sortedOrders);       
+      
+      });
   };
+
+
   useEffect(() => {    
     filterOrderDone();
   }, []);  
