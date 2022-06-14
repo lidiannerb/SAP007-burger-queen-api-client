@@ -35,16 +35,12 @@ export const Kitchen = () => {
 
  
   const handleUpdateStatus = (item, e) => {
-    console.log(item.id);
-    console.log(e.target.value);
     updateOrder(item.id, e.target.value).then((response) => {
       if (response.status === 200) {
         const resultResponse = order.map((element) => {
           if (element.id === item.id) {
             element.status = e.target.value;
-            console.log(e.target.value);
           }
-          console.log(element);
           return element;
         });
         setOrder(resultResponse);

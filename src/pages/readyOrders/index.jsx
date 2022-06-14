@@ -1,7 +1,7 @@
 import { Header } from "../../components/header";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
-import { getOrders } from "../../services/data";
+import { getOrders, updateOrder } from "../../services/data";
 import { useState, useEffect } from "react";
 import { dataFilterOrdersDone } from "../../services/filters";
 import { dateOrder, preparationTime } from "../../services/dateOrder";
@@ -28,6 +28,15 @@ export const ReadyOrders = () => {
       });
   };
 
+  const handleUpdateStatus = (item) => {
+    updateOrder(item.id, "served").then((response) => {
+      let newOrdersDone = ordersDone;
+      if (response.status === 200) {
+        newOrdersDone = ordersDone.filter((element) => element.id !== item.id);
+      }
+      setOrdersDone(newOrdersDone);
+    });
+  };
 
   useEffect(() => {    
     filterOrderDone();
@@ -36,8 +45,9 @@ export const ReadyOrders = () => {
   return (
     <>
       <Header
-      onClick={handleLogout}
-      ></Header>
+        onClick={handleLogout}
+      >        
+      </Header>
 
       <section>
         <ul className="all-orders">
@@ -55,6 +65,7 @@ export const ReadyOrders = () => {
                 item.createdAt,
                 item.processedAt)}
                 products={item.Products}
+                onClick={() => handleUpdateStatus(item)}
               />
               </li>
             );
