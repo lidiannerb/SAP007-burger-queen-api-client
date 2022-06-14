@@ -22,7 +22,7 @@ export const ReadyOrders = () => {
       .then((response) => response.json())
       .then((data) => {
         const filteredOrders = dataFilterOrdersDone(data, "done");
-        const sortedOrders = filteredOrders; // fazer o sort
+        const sortedOrders = filteredOrders.sort((a, b) => b.id - a.id);
         setOrdersDone(sortedOrders);       
       
       });

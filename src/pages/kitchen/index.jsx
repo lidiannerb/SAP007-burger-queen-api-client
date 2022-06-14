@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Header } from "../../components/header";
-import { Button } from "../../components/button";
+// import { Button } from "../../components/button";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../services/data";
@@ -33,6 +33,7 @@ export const Kitchen = () => {
     console.log(order);
   }, [order]);
 
+ 
   const handleUpdateStatus = (item, e) => {
     console.log(item.id);
     console.log(e.target.value);
@@ -72,25 +73,9 @@ export const Kitchen = () => {
                     item.createdAt,
                     item.processedAt
                   )}
-                  products={item.Products}
+                  products={item.Products} 
+                  onClick={(e) => handleUpdateStatus(item, e)}                 
                 />
-                {item.status === "pending" ? (
-                  <Button
-                    onClick={(e) => handleUpdateStatus(item, e)}
-                    value="preparing"
-                  >
-                    Preparar
-                  </Button>
-                ) : (
-                  item.status === "preparing" && (
-                    <Button
-                      onClick={(e) => handleUpdateStatus(item, e)}
-                      value="done"
-                    >
-                      Pronto
-                    </Button>
-                  )
-                )}
               </li>
             );
           })}

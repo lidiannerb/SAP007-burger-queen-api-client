@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import "./style.css";
 import { Card } from "../../components/card";
+import { Button } from "../button";
+import { getRole } from "../../services/token";
 
 const CardOrder = ({
   id,
@@ -12,6 +14,7 @@ const CardOrder = ({
   processedAt,
   preparationTime,
   products,
+  onClick,
 }) => {
   return (
     <>
@@ -45,6 +48,31 @@ const CardOrder = ({
             );
           })}
         </li>
+        <li>
+          {status === "pending" ? (
+          <Button
+            value="preparing"
+            onClick={onClick}
+          >  
+            Preparar
+          </Button> ) : ( status === "preparing" &&
+          <Button
+            value="done"
+            onClick={onClick}
+          >
+            Pronto
+          </Button>
+          )}
+        </li>
+        {getRole() === "atendent" ?   
+        <li>
+          <Button            
+            value="served"
+            onClick={onClick}
+          >
+            Servir
+          </Button>
+        </li> : ""}
       </ul>
     </>
   );

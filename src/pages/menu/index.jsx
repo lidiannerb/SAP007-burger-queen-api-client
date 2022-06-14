@@ -56,42 +56,7 @@ export const Menu = () => {
       hamburguer: false,
     };
     newStatus[value] = true;
-    setButtonMenuStatus(newStatus);
-
-    // if (value === "drinks") {
-    //   setButtonMenuStatus({
-    //     breakfast: false,
-    //     side: false,
-    //     hamburguer: false,
-    //     drinks: true,
-    //   });
-    // }
-    // if (value === "breakfast") {
-    //   setButtonMenuStatus({
-    //     breakfast: true,
-    //     side: false,
-    //     hamburguer: false,
-    //     drinks: false,
-    //   });
-    // }
-
-    // if (value === "side") {
-    //   setButtonMenuStatus({
-    //     breakfast: false,
-    //     side: true,
-    //     hamburguer: false,
-    //     drinks: false,
-    //   });
-    // }
-
-    // if (value === "hamburguer") {
-    //   setButtonMenuStatus({
-    //     breakfast: false,
-    //     side: false,
-    //     hamburguer: true,
-    //     drinks: false,
-    //   });
-    // }
+    setButtonMenuStatus(newStatus);    
   };
 
   const handleAddProductOnCommand = (product) => {
