@@ -2,6 +2,7 @@ import { useState } from "react";
 import {GiHamburgerMenu} from "react-icons/gi";
 import { IoMdCloseCircle } from "react-icons/io";
 import { Button } from "../../components/button";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 export const Navbar = () => {
@@ -20,7 +21,8 @@ export const Navbar = () => {
         
       </Button>
       <ul className={`menu-nav ${navbarOpen ? "show-menu" : ""}`}>
-        <li>Pedidos Prontos</li>
+        <li>
+          <Link to="/ReadyOrders"> Pedidos Prontos </Link></li>
         <li>Histórico de Pedidos</li>
       </ul>
     </nav>
