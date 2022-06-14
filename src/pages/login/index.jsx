@@ -6,7 +6,7 @@ import { Button } from "../../components/button";
 import { LayoutForm } from "../../components/layout";
 import { userLogin } from "../../services/data";
 import { codeErrorLogin } from "../../services/errors";
-import { saveToken } from "../../services/token";
+import { saveToken, saveRole } from "../../services/token";
 import { Logo } from "../../components/logo";
 import ErrorMessages from "../../components/errorMessages";
 
@@ -27,6 +27,7 @@ const Login = () => {
       })
       .then((data) => {
         saveToken(data.token);
+        saveRole(data.role);
         if (data.role == "atendent") {
           navigate("/Menu");
         } else if (data.role == "kitchen") {

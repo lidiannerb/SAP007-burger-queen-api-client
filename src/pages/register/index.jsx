@@ -7,7 +7,7 @@ import { Logo } from "../../components/logo";
 import { LayoutForm } from "../../components/layout";
 import { createUser } from "../../services/data";
 import { codeErrorRegister } from "../../services/errors";
-import { saveToken } from "../../services/token";
+import { saveToken, saveRole } from "../../services/token";
 import ErrorMessages from "../../components/errorMessages";
 
 const Register = () => {
@@ -29,6 +29,7 @@ const Register = () => {
       })
       .then((data) => {
         saveToken(data.token);
+        saveRole(data.role);
         if (data.role == "atendent") {
           navigate("/Menu");
         } else if (data.role == "kitchen") {
