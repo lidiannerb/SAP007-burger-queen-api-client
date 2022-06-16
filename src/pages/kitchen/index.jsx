@@ -23,7 +23,12 @@ export const Kitchen = () => {
   function filterOrder() {
     getOrders()
       .then((response) => response.json())
-      .then((data) => setOrder(dataFilterOrder(data, "done")));
+      .then((data) => {
+        const filterDone = dataFilterOrder(data, "done");
+        const filterServed = dataFilterOrder(filterDone, "served");
+
+        setOrder(filterServed);
+      });
   }
   useEffect(() => {
     filterOrder();
