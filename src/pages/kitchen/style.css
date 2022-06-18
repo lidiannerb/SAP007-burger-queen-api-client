@@ -1,8 +1,8 @@
-.order-kitchen {
-  display: flex;
-  flex-wrap: wrap;
-  
-}
+/* .order-kitchen {
+  /* display: flex;
+  flex-wrap: wrap; */
+
+
 
 /* .section-all-orders {
   display: flex;
@@ -12,16 +12,23 @@
 } */
 
 .all-orders {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 50px;
-  
+  gap: 50px; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  justify-items: center;
+  /* box-sizing: border-box; */
+
 }
 
 .li-all-orders {
-  width: 200px;
-  height: 300px;
-  border-radius: 10px;  
+  box-sizing: border-box;
+  width: 350px;
+  height: 150px;
+  border-radius: 10px;
   overflow: auto;
 }
+

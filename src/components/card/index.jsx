@@ -2,19 +2,24 @@ import "./style.css";
 import { IoAddCircle } from "react-icons/io5";
 import { Button } from "../button";
 
-export const Card = ({ image, price, name, qtd, flavor, complement, onClick }) => {
+export const Card = ({
+  image,
+  price,
+  name,
+  qtd,
+  flavor,
+  complement,
+  onClick,
+}) => {
   return (
     <>
       <ul className="card">
         {image && (
           <li className="img-card">
-          <img className="img" src={image} alt="ItemCard " />
-        </li>
-        )} 
+            <img className="img" src={image} alt="ItemCard " />
+          </li>
+        )}
         <li className="name-card">
-          {qtd && (<li className="price-card">
-            <p className="info-products">{qtd}</p>
-          </li>)}
           <p className="info-products">{name}</p>
         </li>
         {flavor != null ? (
@@ -24,7 +29,6 @@ export const Card = ({ image, price, name, qtd, flavor, complement, onClick }) =
         ) : (
           ""
         )}
-
         {complement != null ? (
           <li className="complement-card">
             <p className="info-products">Adicional:{complement}</p>
@@ -32,17 +36,21 @@ export const Card = ({ image, price, name, qtd, flavor, complement, onClick }) =
         ) : (
           ""
         )}
-        {price && (<li className="price-card">
-          <p className="info-products">Preço: R${price}</p>
-        </li>)}
+        {price && (
+          <li className="price-card">
+            <p className="info-products">Preço: R${price}</p>
+          </li>
+        )}
 
+        {qtd && <li className="price-card">{qtd}</li>}
 
-
-        {onClick && (<li className="btn-card">
-          <Button className="btn-add-product" onClick={onClick}>
-            <IoAddCircle className="icon-card-add" />
-          </Button>
-        </li>)}
+        {onClick && (
+          <li className="btn-card">
+            <Button className="btn-add-product" onClick={onClick}>
+              <IoAddCircle className="icon-card-add" />
+            </Button>
+          </li>
+        )}
       </ul>
     </>
   );

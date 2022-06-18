@@ -1,7 +1,42 @@
 .items-order-container {
-  display: flex;
-  flex-direction: column;  
+  /* display: flex;
+  flex-direction: column;   */
   justify-content:center;
   background: #DAA927;
   color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* height: fit-content;
+  overflow: auto; */
+
 }
+
+.itens-order-li{
+  grid-column: 1;
+  padding: 1rem 0 0 1rem;
+  display: grid;
+  height: fit-content;
+
+}
+
+.info-products-text{
+  text-align: left;
+  color: #010101;
+}
+
+.info-products-text > small {
+  color:#000000;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding-right: 5px;
+}
+
+
+.items-order-container > .products-card-li{
+  grid-column: 2;
+  padding: 1rem 0 0 1rem;
+  display: grid;
+  height: fit-content;
+}
+
+
