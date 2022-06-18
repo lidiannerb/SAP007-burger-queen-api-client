@@ -4,13 +4,24 @@
   
 }
 
+/* .section-all-orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 50px;
+} */
+
 .all-orders {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  gap: 50px;
+  
 }
 
 .li-all-orders {
   width: 200px;
-  min-height: 350px;
+  height: 300px;
+  border-radius: 10px;  
+  overflow: auto;
 }

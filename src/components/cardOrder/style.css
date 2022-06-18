@@ -1,7 +1,7 @@
 .items-order-container {
   display: flex;
   flex-direction: column;  
-  justify-content: center;
+  justify-content:center;
   background: #DAA927;
   color: black;
 }
