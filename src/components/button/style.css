@@ -28,10 +28,10 @@ button {
 }
 
 .btn-menu.active-filter {
-  background: #F80B0B;
+  background: #468C4B;
 }
 
-.btn-send-order {
+.btn-send-order, .btn-card-order {
   background: #468C4B;
   border-radius: 30px;
   color: #000000;
@@ -46,4 +46,3 @@ button {
   border: none;
   filter: none;
 }
-

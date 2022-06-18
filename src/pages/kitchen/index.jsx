@@ -58,7 +58,7 @@ export const Kitchen = () => {
       <section>
         <Header onClick={handleLogout} />
       </section>
-      <section>
+      <section className="section-all-orders">
         <ul className="all-orders">
           {order.map((item) => {
             return (
@@ -69,7 +69,7 @@ export const Kitchen = () => {
                   table={item.table}
                   status={item.status}
                   createAt={dateOrder(item.createdAt)}
-                  //updateAt={dateOrder(item.updatedAt)}
+                  updateAt={dateOrder(item.updatedAt)}
                   preparationTime={preparationTime(
                     item.createdAt,
                     item.processedAt
