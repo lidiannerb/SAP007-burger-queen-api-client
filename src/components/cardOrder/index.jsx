@@ -36,7 +36,7 @@ const CardOrder = ({
           <small>Criação:</small>
           {createAt}
         </p>
-        {preparationTime !== null ? (
+        {preparationTime >= "0" ? (
           <p className="info-products-text">
             <small>Tempo de preparo:</small>
             {preparationTime}
