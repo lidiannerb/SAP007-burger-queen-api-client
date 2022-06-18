@@ -36,12 +36,40 @@ const CardOrder = ({
           <small>Criação:</small>
           {createAt}
         </p>
-        <p className="info-products-text">
-          <small>Tempo de preparo:</small>
-          {/* Processado:{processedAt} */}
-          {preparationTime}
-          {/* Atualização:{updateAt} */}
-        </p>
+        {preparationTime !== null ? (
+          <p className="info-products-text">
+            <small>Tempo de preparo:</small>
+            {preparationTime}
+          </p>
+        ) : (
+          ""
+        )}
+        <div className="li-buttons">
+          {status === "pending" ? (
+            <Button
+              className="btn-card-order"
+              value="preparing"
+              onClick={onClick}
+            >
+              Preparar
+            </Button>
+          ) : (
+            status === "preparing" && (
+              <Button className="btn-card-order" value="done" onClick={onClick}>
+                Concluir
+              </Button>
+            )
+          )}
+        </div>
+        {(getRole() === "atendent") & (status !== "served") ? (
+          <div className="li-buttons">
+            <Button className="btn-card-order" value="served" onClick={onClick}>
+              Servir
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
       </li>
 
       <ul className="products-card-li">
@@ -81,32 +109,6 @@ const CardOrder = ({
           );
         })}
       </ul>
-      <li>
-        {status === "pending" ? (
-          <Button
-            className="btn-card-order"
-            value="preparing"
-            onClick={onClick}
-          >
-            Preparar
-          </Button>
-        ) : (
-          status === "preparing" && (
-            <Button className="btn-card-order" value="done" onClick={onClick}>
-              Pronto
-            </Button>
-          )
-        )}
-      </li>
-      {getRole() === "atendent" ? (
-        <li>
-          <Button className="btn-card-order" value="served" onClick={onClick}>
-            Servir
-          </Button>
-        </li>
-      ) : (
-        ""
-      )}
     </ul>
   );
 };

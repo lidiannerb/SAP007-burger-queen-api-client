@@ -27,7 +27,7 @@
 .li-all-orders {
   box-sizing: border-box;
   width: 350px;
-  height: 150px;
+  height: 200px;
   border-radius: 10px;
   overflow: auto;
 }

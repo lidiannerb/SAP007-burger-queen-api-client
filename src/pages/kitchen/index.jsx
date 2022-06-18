@@ -53,10 +53,9 @@ export const Kitchen = () => {
   };
 
   return (
-    <>
-      <section>
-        <Header onClick={handleLogout} />
-      </section>
+    <>      
+      <Header onClick={handleLogout} />
+      <h1 className="title-pages">Cozinha</h1>
       <section className="section-all-orders">
         <ul className="all-orders">
           {order.map((item) => {
