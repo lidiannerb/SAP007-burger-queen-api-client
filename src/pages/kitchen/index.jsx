@@ -38,7 +38,6 @@ export const Kitchen = () => {
     console.log(order);
   }, [order]);
 
- 
   const handleUpdateStatus = (item, e) => {
     updateOrder(item.id, e.target.value).then((response) => {
       if (response.status === 200) {
@@ -74,8 +73,8 @@ export const Kitchen = () => {
                     item.createdAt,
                     item.processedAt
                   )}
-                  products={item.Products} 
-                  onClick={(e) => handleUpdateStatus(item, e)}                 
+                  products={item.Products}
+                  onClick={(e) => handleUpdateStatus(item, e)}
                 />
               </li>
             );

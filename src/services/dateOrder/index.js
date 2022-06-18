@@ -12,9 +12,9 @@ export const preparationTime = (startOfPreparation, endOfPreparation) => {
 
   const timePreparation = differenceInMinutes(processedAt, createAt);
   if(timePreparation < 60) {
-    return `${timePreparation}minutos`;
+    return `${timePreparation} minutos`;
   }else {
-    return `${minutesToHours(timePreparation)}horas`;
+    return `${minutesToHours(timePreparation)} horas`;
   }
 
 };

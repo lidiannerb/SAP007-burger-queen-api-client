@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import "./style.css";
-import { Card } from "../../components/card";
 import { Button } from "../button";
 import { getRole } from "../../services/token";
 
@@ -10,69 +9,105 @@ const CardOrder = ({
   table,
   status,
   createAt,
-  updateAt,
-  processedAt,
   preparationTime,
   products,
   onClick,
 }) => {
   return (
-    <>
-      <ul className="items-order-container">
-        <li>
-          <p className="info-products">Pedido nº{id}</p>
-          <p className="info-products">Cliente: {client}</p>
-          <p className="info-products">Mesa: {table}</p>
-          <p className="info-products">Status: {status}</p>
-          <p className="info-products">Criação:{createAt}</p>
-          <p className="info-products">Tempo de preparo:{preparationTime}</p>
-        </li>
+    <ul className="items-order-container">
+      <li className="itens-order-li">
+        <p className="info-products-text">
+          <small>Pedido nº:</small>
+          {id}
+        </p>
+        <p className="info-products-text">
+          <small>Cliente:</small>
+          {client}
+        </p>
+        <p className="info-products-text">
+          <small>Mesa:</small>
+          {table}
+        </p>
+        <p className="info-products-text">
+          <small>Status:</small>
+          {status}
+        </p>
+        <p className="info-products-text">
+          <small>Criação:</small>
+          {createAt}
+        </p>
+        <p className="info-products-text">
+          <small>Tempo de preparo:</small>
+          {/* Processado:{processedAt} */}
+          {preparationTime}
+          {/* Atualização:{updateAt} */}
+        </p>
+      </li>
 
-        <li className="products-card-li">
-          Produtos:
-          {products.map((productList) => {
-            return (
-              <div key={`productList-${productList.id}`}>
-                <Card
-                  qtd={productList.qtd}
-                  name={productList.name}
-                  flavor={productList.flavor}                  
-                  complement={productList.complement}
-                ></Card>
-              </div>
-            );
-          })}
-        </li>
-        <li>
-          {status === "pending" ? (
+      <ul className="products-card-li">
+        <p className="info-products-text">
+          <small>Produtos:</small>
+        </p>
+        {products.map((productList) => {
+          return (
+            <div key={`productList-${productList.id}`}>
+              <li>
+                <p className="info-products-text">
+                  <small>Quantidade:</small>
+                  {productList.qtd}
+                </p>
+                <p className="info-products-text">
+                  <small>nome:</small>
+                  {productList.name}
+                </p>
+                {productList.flavor !== null ? (
+                  <p className="info-products-text">
+                    <small>Sabor:</small>
+                    {productList.flavor}
+                  </p>
+                ) : (
+                  ""
+                )}
+                {productList.complement !== null ? (
+                  <p className="info-products-text">
+                    <small>Complemento:</small>
+                    {productList.complement}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </li>
+            </div>
+          );
+        })}
+      </ul>
+      <li>
+        {status === "pending" ? (
           <Button
-            className="btn-card-order"  
+            className="btn-card-order"
             value="preparing"
             onClick={onClick}
-          >  
+          >
             Preparar
-          </Button> ) : ( status === "preparing" &&
-          <Button
-            className="btn-card-order"  
-            value="done"
-            onClick={onClick}
-          >
-            Pronto
           </Button>
-          )}
-        </li>
-        {getRole() === "atendent" ?   
+        ) : (
+          status === "preparing" && (
+            <Button className="btn-card-order" value="done" onClick={onClick}>
+              Pronto
+            </Button>
+          )
+        )}
+      </li>
+      {getRole() === "atendent" ? (
         <li>
-          <Button 
-            className="btn-card-order"           
-            value="served"
-            onClick={onClick}
-          >
+          <Button className="btn-card-order" value="served" onClick={onClick}>
             Servir
           </Button>
-        </li> : ""}
-      </ul>
-    </>
+        </li>
+      ) : (
+        ""
+      )}
+    </ul>
   );
 };
 
