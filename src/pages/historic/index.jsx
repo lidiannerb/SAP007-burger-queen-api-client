@@ -1,15 +1,16 @@
 import { Header } from "../../components/header";
 import { removeToken } from "../../services/token";
 import { useNavigate } from "react-router-dom";
-import { getOrders, updateOrder } from "../../services/data";
+import { getOrders } from "../../services/data";
 import { useState, useEffect } from "react";
 import { dataFilterOrdersDone } from "../../services/filters";
 import { dateOrder, preparationTime } from "../../services/dateOrder";
 import CardOrder from "../../components/cardOrder";
+import "./style.css";
 
-export const ReadyOrders = () => {
+export const Historic = () => {
 
-  const [ordersDone, setOrdersDone] = useState([]);
+  const [ordersServed, setOrdersServed] = useState([]);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -17,38 +18,31 @@ export const ReadyOrders = () => {
     navigate("/");
   };
 
-  const filterOrderDone = () => {
+  const filterOrderServed = () => {
     getOrders()
       .then((response) => response.json())
       .then((data) => {
-        const filteredOrders = dataFilterOrdersDone(data, "done");
+        const filteredOrders = dataFilterOrdersDone(data, "served");
         const sortedOrders = filteredOrders.sort((a, b) => b.id - a.id);
-        setOrdersDone(sortedOrders);       
+        setOrdersServed(sortedOrders);       
       
       });
   };
 
-  const handleUpdateStatus = (item) => {
-    updateOrder(item.id, "served").then((response) => {
-      let newOrdersDone = ordersDone;
-      if (response.status === 200) {
-        newOrdersDone = ordersDone.filter((element) => element.id !== item.id);
-      }
-      setOrdersDone(newOrdersDone);
-    });
-  };
-
   useEffect(() => {    
-    filterOrderDone();
+    filterOrderServed();
   }, []);  
 
   return (
     <>
-      <Header onClick={handleLogout} />       
-      <h1 className="title-pages">Pedidos prontos para servir</h1>
+      <Header
+        onClick={handleLogout}
+      >        
+      </Header>
+      <h1 className="title-pages">Histórico de Pedidos Servidos</h1>
       <section>
         <ul className="all-orders">
-          {ordersDone.map((item) => {
+          {ordersServed.map((item) => {
             return (
               <li className="li-all-orders" key={`item-${item.id}`}>              
               <CardOrder
@@ -62,7 +56,6 @@ export const ReadyOrders = () => {
                 item.createdAt,
                 item.processedAt)}
                 products={item.Products}
-                onClick={() => handleUpdateStatus(item)}
               />
               </li>
             );
@@ -72,4 +65,3 @@ export const ReadyOrders = () => {
     </>
   );
 };
-
