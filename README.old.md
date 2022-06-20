@@ -94,7 +94,6 @@ A interface deve mostrar os dois menus (café da manhã e restante do dia), cada
 um com todos os seus _produtos_. O usuário deve poder escolher que _produtos_
 adicionar e a interface deve mostrar o _resumo do pedido_ com o custo total.
 
-![out](https://user-images.githubusercontent.com/110297/45984241-b8b51c00-c025-11e8-8fa4-a390016bee9d.gif)
 
 Além disso a cliente nos deu um [link da documentação](https://lab-api-bq.herokuapp.com/api-docs/)
 que especifica o comportamento esperado da API que iremos expor por HTTP.
